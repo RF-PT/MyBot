@@ -1,0 +1,51 @@
+**v2.3 (February 14)**
+*Addiction of unique themes, now everyone can choose the look of is bot/mod, by @RF; 
+*Correction of some code bugs, by @RF; 
+*Addiction of the new attack type made by @AwesomeGamer; 
+*Corrections made on Scripted Attacks, before was one attack specific for each TH, now they are all equal, corrections made by @RF; 
+
+**v2.2 (February 12)**
+*Fix the variable of Earthquake spell, by @N2delay; 
+*Add the new German language, before it wasnt provided, by @RF; 
+
+**v2.1 (February 11)**
+*Donates the biggest troops first, then smaller by @calvinpark 
+*Fixed Zap of drills with TH Snipes, did not work because the DEDropSmartSpell( ) function was not called in useTownHallSnipe( ) function 
+*Added Earthquake spell 
+*Removed DrillZapSpell.au3, was the ancient code of @bushido-21 to make spells, it is no longer necessary 
+*Added an DebugImage in SmartDrill function, you can then check the picture in \Debug\ folder, he will add the catch time, and levels of drills. Global variable to $debugImageSave = 1 
+
+**v2.0 (February 11)**
+*Transfer to the new version of the bot(v5.1.5) and programming the mod in that version, by @RF; 
+*Auto-Train Lightning Spell in SmartZap tab fixed 
+*Train Loop fix 
+*Tab SmartZap now avaiable in portuguese for portuguese users 
+*There were local variables declared but outside of functions: "SpellSlot" 
+*Removed some ZoomOut( ) in DEDropSmartSpell( ) function 
+*SearchLimit($iSkipped) added the correct variable in this function 
+*Problems in the GUI/Variable $tabSmartZap = GUICtrlCreateTabItem ("SmartZap") 
+*ParseAttackCSV.au3 fixed by @SunnySan 
+*Removed DrillZapTH() and txtMinDark( ) in MBR GUI Controls SmartZap, they arent necessary 
+*BotDetectFirstTime( ) removed the setlogs before check if in the field, so do not give errors in the mines, extractors and drills 
+*Problems rearming the traps in villages TH11 
+*Donates the biggest troops first, then smaller by @calvinpark 
+*Fixed $DonatePixel[1] to 10, there is a problem with the arrest of the donation button when there are two consecutive requests one after and then one of them are not read. 
+
+**v1.4 (February 7)** 
+*Correction in SmartZap strategy, now it works in TH11, thanks @LunaEclipse, for your contribution; 
+*Addition of new attack strategy(Scripted Attacks 8F/Classic FF), made by @AwesomeGamer; 
+
+**v1.3 (February 3)**
+*Addition of new feature "Save Troops for Collectors" - made by @LunaEclipse, and it was him that added that into the mod; 
+*Addition of new logo - made by @MenZom; 
+
+**v1.2 (January 28)**
+*Transfer to the new version of the bot(v5.1.4) and programming the mod in that version; 
+
+**v1.1 (January 25)**
+*Transfer to the new version of the bot(v5.1.2) and programming the mod in that version; 
+*Change the site of download - now it is DropBox, before it was ZippyShare; 
+*Adding the new logo - made by @MenZom; 
+
+**v1.0 (January 21)** 
+*Release of the Mod; 
