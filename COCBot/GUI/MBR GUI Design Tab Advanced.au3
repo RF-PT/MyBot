@@ -182,7 +182,7 @@
 			GUICtrlSetOnEvent(-1, "cmbAttackTHType")
 			LoadThSnipeAttacks()
 
-        $y +=25
+        $y +=5
 ;~ 		$lblAttackBottomType = GUICtrlCreateLabel(GetTranslated(4,41, "If TH is at bottom") & ":", $x -15 , $y + 5, 90, -1, $SS_RIGHT)
 ;~ 		$cmbAttackbottomType = GUICtrlCreateCombo("",  $x + 80, $y, 120, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 ;~ 			GUICtrlSetData(-1, GetTranslated(4,42, "Deploy: Zoomed In")&"|" & GetTranslated(4,43, "Deploy: On Sides"), GetTranslated(4,43, -1))
@@ -224,7 +224,12 @@
 			$txtTip = GetTranslated(4,63, "Use Heal spells when Attacking TH Snipe") & @CRLF & GetTranslated(4,64, "Will be deployed in Second wave")
 			GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetState(-1, $GUI_DISABLE)
-
+		 $y += 27
+		GUICtrlCreateIcon($pIconLib, $eIcnDrill, $x - 16, $y, 24, 24)
+		$chkDrillZapTH = GUICtrlCreateCheckbox("Zap DE Drills", $x + 12, $y+1, -1, -1)
+			$txtTip = "Use this if you want to Zap Drill when TH Snipping"
+			GUICtrlSetTip(-1, $txtTip)
+			GUICtrlSetState(-1, $GUI_DISABLE)
 
 		$y+= 30
 

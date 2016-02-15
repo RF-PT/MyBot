@@ -18,6 +18,7 @@
 #include "functions\Config\saveConfig.au3"
 #include "functions\Config\ScreenCoordinates.au3"
 #include "functions\Config\DelayTimes.au3"
+#include "functions\Config\LoadTheme.au3"
 
 #include "functions\Attack\AttackReport.au3"
 #include "functions\Attack\BuildingSide.au3"
@@ -192,6 +193,11 @@
 ;#include "functions\Read Text\Obsolete\getTrophy.au3"
 ;#include "functions\Read Text\Obsolete\getString.au3"
 
+#include "functions\SmartZap\DEDrillSearch.au3"
+#include "functions\SmartZap\DEDropSmartSpell.au3"
+;#include "functions\SmartZap\DrillZapSpell.au3"
+
+
 #include "functions\Search\CompareResources.au3"
 #include "functions\Search\GetResources.au3"
 #include "functions\Search\PrepareSearch.au3"
@@ -231,3 +237,9 @@
 #include "functions\Village\UpgradeHeroes.au3"
 #include "functions\Village\ClanLevel.au3"
 #include "functions\Village\StarBonus.au3"
+
+#include "functions\Attack\unitInfo.au3"
+
+#include "functions\Attack\Attack Profiles\Standard.au3"
+#include "functions\Attack\Attack Profiles\FourFinger.au3"
+#include "functions\Attack\Attack Profiles\SaveTroops.au3"

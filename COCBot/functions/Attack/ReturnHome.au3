@@ -31,6 +31,8 @@ Func ReturnHome($TakeSS = 1, $GoldChangeCheck = True) ;Return main screen
 			While GoldElixirChangeEBO()
 				If _Sleep($iDelayReturnHome1) Then Return
 			WEnd
+
+			DEDropSmartSpell()
 			;If Heroes were not activated: Hero Ability activation before End of Battle to restore health
 			If ($checkKPower = True Or $checkQPower = True) And $iActivateKQCondition = "Auto" Then
 				;_CaptureRegion()
@@ -51,7 +53,7 @@ Func ReturnHome($TakeSS = 1, $GoldChangeCheck = True) ;Return main screen
 
 	EndIf
 
-	If $DisableOtherEBO And $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB And ($dropQueen Or $dropKing) Then
+	If $DisableOtherEBO And $iMatchMode = $LB And $iChkDeploySettings[$LB] = 6 And $DESideEB And ($dropQueen Or $dropKing) Then
 		RevertEBO()
 	EndIf
 
@@ -141,7 +143,7 @@ Func ReturnHome($TakeSS = 1, $GoldChangeCheck = True) ;Return main screen
 	$counter = 0
 	While 1
 		If _Sleep($iDelayReturnHome4) Then Return
-		If StarBonus() = True Then Setlog("Star Bonus window closed chief!", $COLOR_BLUE)  ; Check for Star Bonus window to fill treasury (2016-01) update
+		If StarBonus() = True Then Setlog("Star Bonus window closed chief!", $COLOR_BLUE) ; Check for Star Bonus window to fill treasury (2016-01) update
 		If IsMainPage() Then
 			_GUICtrlEdit_SetText($txtLog, _PadStringCenter(" BOT LOG ", 71, "="))
 			_GUICtrlRichEdit_SetFont($txtLog, 6, "Lucida Console")

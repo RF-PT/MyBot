@@ -35,10 +35,15 @@ If Not FileExists(@ScriptDir & "\License.txt") Then
 	InetClose($license)
 EndIf
 
+;Theme
+#include "Themes\_UskinLibrary.au3"
+_Uskin_LoadDLL()
+readThemeConfig()
+
 ;~ ProcessSetPriority(@AutoItPID, $PROCESS_ABOVENORMAL)
 #include "COCBot\MBR Global Variables.au3"
 
-$sBotVersion = "v5.1.5" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
+$sBotVersion = "v5.1.5 - Mod S&E V2.3" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
 $sBotTitle = "My Bot " & $sBotVersion & " "
 
 Opt("WinTitleMatchMode", 3) ; Window Title exact match mode

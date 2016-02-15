@@ -76,6 +76,8 @@ Func Train()
 		Assign(("tooFew" & $TroopDarkName[$i]), 0)
 	Next
 
+
+
 	If $FirstStart And $OptTrophyMode = 1 And $icmbTroopComp <> 8 Then
 		$ArmyComp = $CurCamp
 	EndIf
@@ -100,14 +102,18 @@ Func Train()
 		If IsMainPage() Then Click($aArmyTrainButton[0], $aArmyTrainButton[1], 1, 0, "#0293") ; Button Army Overview
 	EndIf
 
-	;Wait for the armyoverview Window
-	If WaitforPixel(762, 328 + $midOffsetY, 763, 329 + $midOffsetY, Hex(0xF18439, 6), 10, 10) Then
-		If $debugSetlog = 1 Then SetLog("Wait for ArmyOverView Window", $COLOR_GREEN)
-		If IsTrainPage() Then checkArmyCamp()
-	EndIf
+	If _Sleep($iDelayRunBot6) Then Return ; wait for window to open  ; é só de 100ms é muito pouco
 
-	If _Sleep($iDelayRunBot6) Then Return ; wait for window to open
-	If Not (IsTrainPage()) Then Return ; exit if I'm not in train page
+	$i = 0
+	While Not IsTrainPage() ; vai fazer um loop até que esteja na pagina de treino ou então até o $i ser 20
+		If _Sleep($iDelayRunBot3) Then Return ; $iDelayRunBot3 = 200ms
+		$i += 1
+		If $i = 20 Then ExitLoop
+	WEnd
+
+	If Not (IsTrainPage()) Then Return ; se realmente aconteceu alguma coisa e não esta na pagina de treino então sai da função
+
+	checkArmyCamp()
 
 	checkAttackDisable($iTaBChkIdle) ; Check for Take-A-Break after opening train page
 

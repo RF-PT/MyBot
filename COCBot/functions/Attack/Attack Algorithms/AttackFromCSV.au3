@@ -383,7 +383,9 @@ Func Algorithm_AttackCSV($testattack = False)
 	If $makeIMGCSV = 1 Then AttackCSVDEBUGIMAGE() ;make IMG debug
 
 	; 07 - LAUNCH PARSE FUNCTION -------------------------------------------------------------
-	SetSlotSpecialTroops()
+
+	; SetSlotSpecialTroops()
+	getHeroes()
 	ParseAttackCSV($testattack)
 
 EndFunc   ;==>Algorithm_AttackCSV

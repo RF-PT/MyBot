@@ -243,6 +243,7 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	Else
 		GUICtrlSetState($chkABRandomSpeedAtk, $GUI_UNCHECKED)
 	EndIf
+    chkDBAttackOption()
 	chkABRandomSpeedAtk()
 
 	_GUICtrlComboBox_SetCurSel($cmbDBSelectTroop, $iCmbSelectTroop[$DB])
@@ -969,6 +970,8 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	GUICtrlSetData($txtNumPoisonSpell, $PoisonSpellComp)
 	GUICtrlSetData($txtNumHasteSpell, $HasteSpellComp)
 	GUICtrlSetData($txtTotalCountSpell, $iTotalCountSpell)
+	GUICtrlSetData($txtNumEarthquakeS, $EarthQSpellComp)
+
 	lblTotalCountSpell()
 
 	;PushBullet-----------------------------------------------------------------------------
@@ -1622,7 +1625,40 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 		GUICtrlSetState($chkUseAttackABCSV, $GUI_UNCHECKED)
 	EndIf
 	chkUseAttackABCSV()
+	;SmartZap Settings--------------------------------------------------------------------------
+   If $ichkSmartLightSpell = 1 Then
+		GUICtrlSetState($chkSmartLightSpell, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkSmartLightSpell, $GUI_UNCHECKED)
+	EndIf
+	SmartLightSpell()
+	If $ichkTrainLightSpell = 1 Then
+		GUICtrlSetState($chkTrainLightSpell, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkTrainLightSpell, $GUI_UNCHECKED)
+	EndIf
+	autoLightSpell()
+	GUICtrlSetData($txtMinDark, $itxtMinDark)
 
+	If $ichkTrainLightSpell = 1 Then
+		GUICtrlSetState($chkTrainLightSpell, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkTrainLightSpell, $GUI_UNCHECKED)
+	EndIf
+
+	If $ichkDrillZapTH = 1 Then
+		GUICtrlSetState($chkDrillZapTH, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDrillZapTH, $GUI_UNCHECKED)
+	EndIf
+
+	If $useFFBarchST = 1 Then
+		GUICtrlSetState($chkChangeFF, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkChangeFF, $GUI_UNCHECKED)
+	EndIf
+
+	GUICtrlSetData($txtTHpercentCollectors, $percentCollectors)
 
 	; Reenabling window redraw
 	If $bRedrawAtExit Then SetRedrawBotWindow(True)

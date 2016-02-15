@@ -882,6 +882,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "Spells", "PoisonSpell", GUICtrlRead($txtNumPoisonSpell))
 	IniWrite($config, "Spells", "HasteSpell", GUICtrlRead($txtNumHasteSpell))
 	IniWrite($config, "Spells", "SpellFactory", GUICtrlRead($txtTotalCountSpell))
+	IniWrite($config, "Spells", "EarthQSpell", GUICtrlRead($txtNumEarthquakeS))
 
 	;Misc Settings--------------------------------------------------------------------------
 	If $ichkWalls = 1 Then
@@ -1497,6 +1498,35 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		IniWrite($config, "attackCSV", "EnableScriptAB", 0)
 	EndIf
+
+	;SmartZap Settings--------------------------------------------------------------------------
+	If GUICtrlRead($chkSmartLightSpell) = $GUI_CHECKED Then
+		IniWrite($config, "SmartZap", "SmartLightSpell", "1")
+	Else
+		IniWrite($config, "SmartZap", "SmartLightSpell", "0")
+	EndIf
+	If GUICtrlRead($chkTrainLightSpell) = $GUI_CHECKED Then
+		IniWrite($config, "SmartZap", "TrainLightSpell", "1")
+	Else
+		IniWrite($config, "SmartZap", "TrainLightSpell", "0")
+	EndIf
+
+	IniWrite($config, "SmartZap", "txtMinDark", GUICtrlRead($txtMinDark))
+
+	If GUICtrlRead($chkDrillZapTH) = $GUI_CHECKED Then
+		IniWrite($config, "SmartZap", "chkDrillZapTH", "1")
+	Else
+		IniWrite($config, "SmartZap", "chkDrillZapTH", "0")
+	 EndIf
+
+	;save troops option
+	If GUICtrlRead($chkChangeFF) = $GUI_CHECKED Then
+		IniWrite($config, "SmartZap", "ChkSTFFBarch", 1)
+	Else
+		IniWrite($config, "SmartZap", "ChkSTFFBarch", 0)
+	EndIf
+
+	IniWrite($config, "SmartZap", "txtTHpercentCollectors", GUICtrlRead($txtTHpercentCollectors))
 
 	If $hFile <> -1 Then FileClose($hFile)
 

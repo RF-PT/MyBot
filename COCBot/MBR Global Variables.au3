@@ -221,6 +221,7 @@ Global $ScreenshotLootInfo = False
 Global $AlertSearch = True
 Global $iChkAttackNow, $iAttackNowDelay, $bBtnAttackNowPressed = False
 Global $PushToken = ""
+Global $ThemeConfig
 
 Global Enum $DB, $LB, $TS, $TB, $DT ; DeadBase, LiveBase, TownhallSnipe, TownhallBully, DropTrophy
 Global $iModeCount = 3
@@ -367,8 +368,8 @@ Global $THusedWarden = 0
 
 Global $TrainSpecial = 1 ;0=Only trains after atk. Setting is automatic
 Global $cBarbarian = 0, $cArcher = 0, $cGoblin = 0, $cGiant = 0, $cWallbreaker = 0, $cWizard = 0, $cBalloon = 0, $cDragon = 0, $cPekka = 0, $cMinion = 0, $cHogs = 0, $cValkyrie = 0, $cGolem = 0, $cWitch = 0, $cLavaHound = 0
-;Troop types
-Global Enum $eBarb, $eArch, $eGiant, $eGobl, $eWall, $eBall, $eWiza, $eHeal, $eDrag, $ePekk, $eMini, $eHogs, $eValk, $eGole, $eWitc, $eLava, $eKing, $eQueen, $eWarden, $eCastle, $eLSpell, $eHSpell, $eRSpell, $eJSpell, $eFSpell, $ePSpell, $eESpell, $eHaSpell
+; Troop types - Modified by LunaEclipse for PrepareAttack changes
+Global Enum $eBarb, $eArch, $eGiant, $eGobl, $eWall, $eBall, $eWiza, $eHeal, $eDrag, $ePekk, $eMini, $eHogs, $eValk, $eGole, $eWitc, $eLava, $eKing, $eQueen, $eWarden, $eCastle, $eLSpell, $eHSpell, $eRSpell, $eJSpell, $eFSpell, $ePSpell, $eESpell, $eHaSpell, $eCCSpell ; Troop types changes for PrepareAttack
 ;wall
 Global $WallCost
 Global $WallX = 0, $WallY = 0
@@ -547,7 +548,7 @@ Global $ArmyComp
 
 ;Spell Settings
 Global $DonPois = 0, $DonEart = 0, $DonHast = 0
-Global $LightningSpellComp = 0, $HealSpellComp = 0, $RageSpellComp = 0, $PoisonSpellComp = 0, $HasteSpellComp = 0
+Global $LightningSpellComp = 0, $HealSpellComp = 0, $RageSpellComp = 0, $PoisonSpellComp = 0, $HasteSpellComp = 0 , $EarthQSpellComp = 0
 Global $CurLightningSpell = 0, $CurHealSpell = 0, $CurRageSpell = 0, $CurJumpSpell = 0, $CurFreezeSpell = 0, $CurPoisonSpell = 0, $CurHasteSpell = 0, $CurEarthSpell = 0
 Global $iTotalCountSpell = 0
 Global $TotalSFactory = 0
@@ -929,6 +930,10 @@ Global $iDetectedImageType = 0
 Global $iDeadBase75percent = 1
 Global $iDeadBase75percentStartLevel = 4
 
+; SaveTroops
+Global $saveTroops = 0
+Global $countFindPixCloser = 0
+Global $countCollectorexposed = 0
 
 ;attackCSV
 Global $scmbDBScriptName = "Barch four fingers"
@@ -942,6 +947,7 @@ Global $attackcsv_locate_gold_storage = 0
 Global $attackcsv_locate_elixir_storage = 0
 Global $attackcsv_locate_dark_storage = 0
 Global $attackcsv_locate_townhall = 0
+Global $attackcsv_use_red_line = 1
 
 ;collector GUI
 Global $hCollectorGUI
@@ -972,3 +978,28 @@ If $aCmdLine[0] > 1 Then
 		EndIf
 	Next
 EndIf
+
+;Zap Drill
+Global $tabSmartZap
+Global $ichkSmartLightSpell
+Global $ichkTrainLightSpell
+Global $iDrills[4][4] = [[-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1]] ; [LocX, LocY, BldgLvl, Quantity=filled by other functions]
+Global $smartZapGain = 0
+Global $NumLTSpellsUsed = 0
+Global $ichkDrillZapTH
+Global $itxtMinDark
+Global $txtMinDark
+Global $iLTSpellCost, $LTSCost , $LTSpellCost
+
+; Attack settings
+Global Enum $eOneSide, $eTwoSides, $eThreeSides, $eAllSides, $eSmartSave, $eFourFinger, $eDESide, $eTHSide
+
+; Type of Spell in the CC, this will be the second entry for the spell on the bar
+Global $CCSpellType
+
+; SaveTroops
+Global $saveTroops = 0
+Global $countFindPixCloser = 0
+Global $countCollectorExposed = 0
+Global $useFFBarchST
+Global $percentCollectors

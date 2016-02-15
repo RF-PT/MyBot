@@ -26,13 +26,13 @@ Func GoldElixirChangeEBO()
 	;READ RESOURCES n.1
 	$Gold1 = getGoldVillageSearch(48, 69)
 	$Elixir1 = getElixirVillageSearch(48, 69 + 29)
-	$Trophies = getTrophyVillageSearch(48, 69+99)
+	$Trophies = getTrophyVillageSearch(48, 69 + 99)
 	If $Trophies <> "" Then ; If trophy value found, then base has Dark Elixir
 		If _Sleep($iDelayGoldElixirChangeEBO1) Then Return
-		$DarkElixir1 = getDarkElixirVillageSearch(48, 69+57)
+		$DarkElixir1 = getDarkElixirVillageSearch(48, 69 + 57)
 	Else
 		$DarkElixir1 = ""
-		$Trophies = getTrophyVillageSearch(48, 69+69)
+		$Trophies = getTrophyVillageSearch(48, 69 + 69)
 	EndIf
 
 	;CALCULATE WHICH TIMER TO USE
@@ -63,14 +63,13 @@ Func GoldElixirChangeEBO()
 	EndIf
 
 
-
 	;MAIN LOOP
 	While TimerDiff($iBegin) < $z
 		;HEALTH HEROES
 		CheckHeroesHealth()
 
 		;DE SPECIAL END EARLY
-		If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB Then
+		If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 6 And $DESideEB Then
 			If $dropQueen Or $dropKing Then DELow()
 			If $DarkLow = 1 Then ExitLoop
 		EndIf
@@ -87,19 +86,19 @@ Func GoldElixirChangeEBO()
 			$Gold2 = getGoldVillageSearch(48, 69)
 		EndIf
 		$Elixir2 = getElixirVillageSearch(48, 69 + 29)
-		$Trophies = getTrophyVillageSearch(48, 69+99)
+		$Trophies = getTrophyVillageSearch(48, 69 + 99)
 		If $Trophies <> "" Then ; If trophy value found, then base has Dark Elixir
 			If _Sleep($iDelayGoldElixirChangeEBO1) Then Return
-			$DarkElixir2 = getDarkElixirVillageSearch(48, 69+57)
+			$DarkElixir2 = getDarkElixirVillageSearch(48, 69 + 57)
 		Else
 			$DarkElixir2 = ""
-			$Trophies = getTrophyVillageSearch(48, 69+69)
+			$Trophies = getTrophyVillageSearch(48, 69 + 69)
 		EndIf
 
 		;WRITE LOG
 		$txtDiff = Round(($z - TimerDiff($iBegin)) / 1000, 1)
 		If Number($txtDiff) < 0 Then $txtDiff = 0
-		If $Gold2 = "" and $Elixir2 = "" and $DarkElixir2= "" Then
+		If $Gold2 = "" And $Elixir2 = "" And $DarkElixir2 = "" Then
 			SetLog("detected [G]: " & $Gold2 & " [E]: " & $Elixir2 & " [DE]: " & $DarkElixir2 & " |  Exit now ", $COLOR_BLUE)
 		Else
 			SetLog("detected [G]: " & $Gold2 & " [E]: " & $Elixir2 & " [DE]: " & $DarkElixir2 & " |  Exit in " & StringReplace(StringFormat("%2i", $txtDiff), "-", "") & " sec.", $COLOR_BLUE)
@@ -147,7 +146,7 @@ Func GoldElixirChangeEBO()
 	WEnd ; END MAIN LOOP
 
 	;Priority Check... Exit To protect Hero Health
-	If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB And $DarkLow = 1 Then
+	If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 6 And $DESideEB And $DarkLow = 1 Then
 		SetLog("Returning Now -DE-", $COLOR_GREEN)
 		Return False
 	EndIf
@@ -182,10 +181,10 @@ Func GoldElixirChangeEBO()
 		SetLog("Gold & Elixir & DE no change detected, exit", $COLOR_GREEN)
 		Return False
 	Else
-		IF $debugsetlog= 1 Then
-			Setlog("Gold1: "  & Number($Gold1) & "  Gold2: " & Number($Gold2), $COLOR_PURPLE)
-			Setlog("Elixir1: "  & Number($Elixir1) & "  Elixir2: " & Number($Elixir2), $COLOR_PURPLE)
-			Setlog("Dark Elixir1: "  & Number($DarkElixir1) & "  Dark Elixir2: " & Number($DarkElixir2), $COLOR_PURPLE)
+		If $debugsetlog = 1 Then
+			Setlog("Gold1: " & Number($Gold1) & "  Gold2: " & Number($Gold2), $COLOR_PURPLE)
+			Setlog("Elixir1: " & Number($Elixir1) & "  Elixir2: " & Number($Elixir2), $COLOR_PURPLE)
+			Setlog("Dark Elixir1: " & Number($DarkElixir1) & "  Dark Elixir2: " & Number($DarkElixir2), $COLOR_PURPLE)
 		EndIf
 		SetLog("Gold & Elixir & DE change detected, waiting...", $COLOR_GREEN)
 		Return True
@@ -196,7 +195,7 @@ EndFunc   ;==>GoldElixirChangeEBO
 
 Func OverallDamage($OverallDamage = 30, $SetLog = True)
 
-	Local $Damage = Number(getOcrOverAllDamage(780, 527 + $bottomOffsetY ))
+	Local $Damage = Number(getOcrOverAllDamage(780, 527 + $bottomOffsetY))
 
 	If $SetLog = True Then
 		SetLog("Overall Damage: " & $Damage & "%")

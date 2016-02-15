@@ -454,6 +454,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$HealSpellComp = IniRead($config, "Spells", "HealSpell", "0")
 		$PoisonSpellComp = IniRead($config, "Spells", "PoisonSpell", "0")
 		$HasteSpellComp = IniRead($config, "Spells", "HasteSpell", "0")
+		$EarthQSpellComp = IniRead($config, "Spells", "EarthQSpell", "0")
 		$iTotalCountSpell = IniRead($config, "Spells", "SpellFactory", "0")
 
 		;Misc Settings--------------------------------------------------------------------------
@@ -614,7 +615,13 @@ Func readConfig() ;Reads config and sets it to the variables
 		$ichkHasteSpell[$DB] = IniRead($config, "attackCSV", "DBHasteSpell", "0")
 		$ichkHasteSpell[$LB] = IniRead($config, "attackCSV", "ABHasteSpell", "0")
 
-
+		;SmartZap Settings--------------------------------------------------------------------------
+		$ichkSmartLightSpell = IniRead($config, "SmartZap", "SmartLightSpell", "0")
+		$ichkTrainLightSpell = IniRead($config, "SmartZap", "TrainLightSpell", "0")
+		$itxtMinDark = IniRead($config, "SmartZap", "txtMinDark", "1000")
+		$ichkDrillZapTH = IniRead($config, "SmartZap", "chkDrillZapTH", "0")
+		$useFFBarchST = IniRead($config, "SmartZap", "ChkSTFFBarch", "0")
+		$percentCollectors = IniRead($config, "SmartZap", "txtTHpercentCollectors", "80")
 	Else
 		Return False
 	EndIf

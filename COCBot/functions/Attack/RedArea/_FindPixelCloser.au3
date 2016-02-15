@@ -59,5 +59,13 @@ Func _FindPixelCloser($arrPixel, $pixel, $nb = 1)
 		$arrPixelCloser[UBound($arrPixelCloser) - 1] = $PixelCloser
 
 	Next
+	If $saveTroops = 1 Then
+		If $countFindPixCloser < UBound($PixelNearCollector) Then
+	            Local $DistancePixeltoPixCLoser = Sqrt(($PixelCloser[0]-$pixel[0])^2 + ($PixelCloser[1] - $pixel[1])^2)
+			;setlog("Distance is " & $DistancePixeltoPixCLoser)
+			If $DistancePixeltoPixCLoser < 51 Then $countCollectorexposed += 1
+			$countFindPixCloser += 1
+		EndIf
+	EndIf
 	Return $arrPixelCloser
 EndFunc   ;==>_FindPixelCloser

@@ -58,6 +58,7 @@ AtkLogHead()
 #include "GUI\MBR GUI Control Tab Notify.au3"
 #include "GUI\MBR GUI Control Tab Expert.au3"
 #include "GUI\MBR GUI Control Tab Stats.au3"
+#include "GUI\MBR GUI Control Tab SmartZap.au3"
 #include "GUI\MBR GUI Control Collectors.au3"
 
 ; Accelerator Key, more responsive than buttons in run-mode
@@ -159,6 +160,7 @@ Func BotClose()
    MBRFunc(False) ; close MBRFunctions dll
    _GUICtrlRichEdit_Destroy($txtLog)
    _GUICtrlRichEdit_Destroy($txtAtkLog)
+   SaveConfig()
    Exit
 EndFunc
 
