@@ -107,7 +107,7 @@ Func CleanYard()
 						For $j = 1 To UBound($expRet) - 1 Step 2
 							$CleanYardX = Int($expRet[$j])
 							$CleanYardY = Int($expRet[$j + 1])
-							If isInsideDiamondXY($CleanYardX, $CleanYardY) = True Then
+							If $CleanYardX > 84 Then
 							   If $DebugSetLog = 1 Then SetLog("Resource found (" & $CleanYardX & "," & $CleanYardY & ")", $COLOR_GREEN)
 							   If IsMainPage() Then Click($CleanYardX, $CleanYardY, 1, 0, "#0430")
 							   If _Sleep($iDelayCollect3) Then Return
