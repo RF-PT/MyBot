@@ -26,7 +26,7 @@ Func BoostBarracks()
 	Local $ImagesToUse1[2] ; Boost one
 	$ImagesToUse1[0] = @ScriptDir & "\images\Button\BoostBarrack.png" ; This image is use to Barracks and Spells Factories
 	$ImagesToUse1[1] = @ScriptDir & "\images\Button\BarrackBoosted.png"
-	$ToleranceImgLoc = 0.90 ; similarity 0.00 to 1
+	$ToleranceImgLoc = 0.92 ; similarity 0.00 to 1
 
 	;	Get from GUI the values
 	Local $icmbQuantBoostBarracks = GUICtrlRead($cmbQuantBoostBarracks)
