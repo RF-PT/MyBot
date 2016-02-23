@@ -51,7 +51,6 @@ $sTxtRage = GetTranslated(1,58, "Rage")
 $sTxtJump = GetTranslated(1,65, "Jump")
 $sTxtFreeze = GetTranslated(1,66, "Freeze")
 $sTxtPoison = GetTranslated(1,59, "Poison")
-
 $sTxtEarth = GetTranslated(1,67, "EarthQuake")
 $sTxtHaste = GetTranslated(1,60, "Haste")
 
@@ -92,7 +91,6 @@ $tabTroops = GUICtrlCreateTabItem(GetTranslated(1,1, "Troops"))
 
 	$y = 150
 	$x +=155
-
 	$grpSpells = GUICtrlCreateGroup(GetTranslated(1,54, "Spells"), $x - 20, $y - 20, 145, 175)
 		$lblLightningIcon = GUICtrlCreateIcon ($pIconLib, $eIcnLightSpell, $x - 10, $y - 5, 24, 24)
 		GUICtrlSetState(-1, $GUI_HIDE)
@@ -205,7 +203,6 @@ $tabTroops = GUICtrlCreateTabItem(GetTranslated(1,1, "Troops"))
 			GUICtrlSetBkColor (-1, $COLOR_MONEYGREEN) ;lime, moneygreen
 			GUICtrlSetData(-1, "0|2|4|6|7|8|9|10|11", "0")
 			GUICtrlSetOnEvent(-1, "lblTotalCountSpell")
-
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	Local $x = 30, $y = 210
@@ -345,74 +342,35 @@ $tabTroops = GUICtrlCreateTabItem(GetTranslated(1,1, "Troops"))
 		$txtNumHogs = GUICtrlCreateInput("0", $x + 85, $y - 3, 30, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 			GUICtrlSetTip(-1, $sTxtSetPerc3 & " " & $sTxtHogRiders & " " & $sTxtSetPerc2)
 			GUICtrlSetLimit(-1, 2)
-			GUICtrlSetState($txtNumHealSpell, $GUI_DISABLE)
-			GUICtrlSetOnEvent(-1, "lblTotalCountSpell")
-		$lblTimesHealS = GUICtrlCreateLabel("x", $x + 112, $y, -1, -1)
+		$lblTimesHogRiders = GUICtrlCreateLabel("x", $x + 117, $y, -1, -1)
 		$y +=25
 		$icnValk = GUICtrlCreateIcon ($pIconLib, $eIcnValkyrie, $x - 10, $y - 5, 24, 24)
 		$lblValkyries = GUICtrlCreateLabel($sTxtValkyries & ":", $x + 18, $y, -1, -1)
 		$txtNumValk = GUICtrlCreateInput("0", $x + 85, $y - 3, 30, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 			GUICtrlSetTip(-1, $sTxtSetPerc3 & " " & $sTxtValkyries & " " & $sTxtSetPerc2)
 			GUICtrlSetLimit(-1, 2)
-			GUICtrlSetState($txtNumRageSpell, $GUI_DISABLE)
-			GUICtrlSetOnEvent(-1, "lblTotalCountSpell")
-		$lblTimesRageS = GUICtrlCreateLabel("x", $x + 112, $y, -1, -1)
-#cs		$y +=25
-		GUICtrlCreateIcon ($pIconLib, $eIcnJumpSpell, $x - 10, $y - 5, 24, 24)
-		$lblJumpSpell = GUICtrlCreateLabel("Jump:", $x + 20, $y, -1, -1)
-		$txtNumJumpS = GUICtrlCreateInput("0", $x + 80, $y - 3, 30, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
-			GUICtrlSetTip(-1, "Enter the No. of Jump Spells to make.")
-			GUICtrlSetLimit(-1, 2)
-		$lblTimesJumpS = GUICtrlCreateLabel("x", $x + 112, $y, -1, -1)
+		$lblTimesValkyries = GUICtrlCreateLabel("x", $x + 117, $y, -1, -1)
 		$y +=25
-<<<<<<< HEAD
-		GUICtrlCreateIcon ($pIconLib, $eIcnFreezeSpell, $x - 10, $y - 5, 24, 24)
-		$lblFreezeSpell = GUICtrlCreateLabel("Freeze:", $x + 20, $y, -1, -1)
-		$txtFreezeS = GUICtrlCreateInput("0", $x + 80, $y - 3, 30, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
-			GUICtrlSetTip(-1, "Enter the No. of Freeze Spells to make.")
-=======
 		$icnGole = GUICtrlCreateIcon ($pIconLib, $eIcnGolem, $x - 10, $y - 5, 24, 24)
 		$lblGolems = GUICtrlCreateLabel($sTxtGolems & ":", $x + 18, $y, -1, -1)
 		$txtNumGole = GUICtrlCreateInput("0", $x + 85, $y - 3, 30, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 			GUICtrlSetTip(-1, $sTxtSetPerc3 & " " & $sTxtGolems & " " & $sTxtSetPerc2)
->>>>>>> 35e322bd4a4ac236a3a36b9d3c6f0cc120270e79
 			GUICtrlSetLimit(-1, 2)
-#ce		$lblFreezeS = GUICtrlCreateLabel("x", $x + 112, $y, -1, -1)
+		$lblTimesGolems = GUICtrlCreateLabel("x", $x + 117, $y, -1, -1)
 		$y +=25
 		$icnWitc = GUICtrlCreateIcon ($pIconLib, $eIcnWitch, $x - 10, $y - 5, 24, 24)
 		$lblWitches = GUICtrlCreateLabel($sTxtWitches & ":", $x + 18, $y, -1, -1)
 		$txtNumWitc = GUICtrlCreateInput("0", $x + 85, $y - 3, 30, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 			GUICtrlSetTip(-1, $sTxtSetPerc3 & " " & $sTxtWitches & " " & $sTxtSetPerc2)
-
 			GUICtrlSetLimit(-1, 2)
-			GUICtrlSetState($txtNumPoisonSpell, $GUI_DISABLE)
-			GUICtrlSetOnEvent(-1, "lblTotalCountSpell")
-		$lblTimesPoisonS = GUICtrlCreateLabel("x", $x + 112, $y, -1, -1)
+		$lblTimesWitches = GUICtrlCreateLabel("x", $x + 117, $y, -1, -1)
 		$y +=25
 		$icnLava = GUICtrlCreateIcon ($pIconLib, $eIcnLavaHound, $x - 10, $y - 5, 24, 24)
 		$lblLavaHounds = GUICtrlCreateLabel($sTxtLavaHounds & ":", $x + 18, $y, -1, -1)
 		$txtNumLava = GUICtrlCreateInput("0", $x + 85, $y - 3, 30, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
 			GUICtrlSetTip(-1, $sTxtSetPerc3 & " " & $sTxtLavaHounds & " " & $sTxtSetPerc2)
 			GUICtrlSetLimit(-1, 2)
-			GUICtrlSetState($txtNumEarthquakeS, $GUI_DISABLE)
-			GUICtrlSetOnEvent(-1, "lblTotalCountSpell")
-		$lblTimesEarthquakeS = GUICtrlCreateLabel("x", $x + 112, $y, -1, -1)
-		$y +=25
-		GUICtrlCreateIcon ($pIconLib, $eIcnHasteSpell, $x - 10, $y - 5, 24, 24)
-		$lblHasteSpell = GUICtrlCreateLabel($sTxtHaste & ":", $x + 20, $y, -1, -1)
-		$txtNumHasteSpell = GUICtrlCreateInput("0", $x + 80, $y - 3, 30, 21, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
-			GUICtrlSetTip(-1, $sTxtSetPerc3 & " " & $sTxtHaste & " " & $sTxtSetSpell)
-			GUICtrlSetLimit(-1, 2)
-			GUICtrlSetState($txtNumHasteSpell, $GUI_DISABLE)
-			GUICtrlSetOnEvent(-1, "lblTotalCountSpell")
-		$lblTimesHasteS = GUICtrlCreateLabel("x", $x + 112, $y, -1, -1)
-		$y +=25
-		$lblTotal = GUICtrlCreateLabel(GetTranslated(1,61, "Spells Capacity") & ":", $x - 20 , $y + 4, -1, -1, $SS_RIGHT)
-		$txtTotalCountSpell = GUICtrlCreateCombo("", $x + 80, $y , 35, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			GUICtrlSetTip(-1, GetTranslated(1,62, "Enter the No. of Spells Capacity. Set to ZERO if you don´t want any Spells"))
-			GUICtrlSetBkColor (-1, $COLOR_MONEYGREEN) ;lime, moneygreen
-			GUICtrlSetData(-1, "0|2|4|6|7|8|9|10|11", "0")
-			GUICtrlSetOnEvent(-1, "lblTotalCountSpell")
+		$lblTimesLavaHounds = GUICtrlCreateLabel("x", $x + 117, $y, -1, -1)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$y = 210
 	$grpDarkBarrackMode = GUICtrlCreateGroup(GetTranslated(1,69, "Dark Barracks Troops"), $x - 20, $y -20, 145, 76)
@@ -437,6 +395,9 @@ $tabTroops = GUICtrlCreateTabItem(GetTranslated(1,1, "Troops"))
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 	$x += 155
 	$y = 330
+
+
+
 
 	$grpBoosterOptions = GUICtrlCreateGroup(GetTranslated(1,30, "Boost Options"), $x - 20, $y - 20, 145, 195)
 		$y -= 5
