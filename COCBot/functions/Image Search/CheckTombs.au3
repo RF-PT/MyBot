@@ -72,23 +72,24 @@ Func CleanYard()
 		$TotalBuilders = $aGetBuilders[1]
 	EndIf
 
-	Local $CleanYard[7]
+	Local $CleanYard[8]
 	$CleanYard[0] = @ScriptDir & "\images\Resources\bush.png"
 	$CleanYard[1] = @ScriptDir & "\images\Resources\mushroom.png"
 	$CleanYard[2] = @ScriptDir & "\images\Resources\tree.png"
 	$CleanYard[3] = @ScriptDir & "\images\Resources\tree2.png"
 	$CleanYard[4] = @ScriptDir & "\images\Resources\trunk.png"
+	$CleanYard[5] = @ScriptDir & "\images\Resources\trunk1.png"
 	$CleanYard[5] = @ScriptDir & "\images\Resources\trunk2.png"
-	$CleanYard[6] = @ScriptDir & "\images\Resources\gembox.png"
+	$CleanYard[7] = @ScriptDir & "\images\Resources\gembox.png"
 
 	Local $CleanYardX, $CleanYardY
-	Local $aToleranceImgLoc[7] = [0.92, 0.91, 0.91, 0.90, 0.91, 0.93, 0.89]
+	Local $aToleranceImgLoc[8] = [0.92, 0.91, 0.91, 0.90, 0.91, 0.91, 0.93, 0.89]
 
 	Local $aGetBuilders = ""
 	Local $TotalBuilders = ""
 
 	If $iFreeBuilderCount > 0 Then
-		For $i = 0 To 6
+		For $i = 0 To 7
 			_WinAPI_DeleteObject($hBitmapFirst)
 			$hBitmapFirst = _CaptureRegion2()
 			If FileExists($CleanYard[$i]) Then
