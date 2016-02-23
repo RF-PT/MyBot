@@ -19,10 +19,8 @@ Func BrewSpells()
 	; Spell Creation
 	; Dark Spell Factory
 
-	If $iTotalCountSpell = 0 Then Return
-
 	;  Auto Lignting Spells For SMARTZAP
-	If $ichkTrainLightSpell = 1 Then
+	If $ichkTrainLightSpell = 1 And $numFactorySpellAvaiables = 1 Then
 		$iBarrHere = 0
 		While Not (isSpellFactory())
 			If Not (IsTrainPage()) Then Return
@@ -46,7 +44,7 @@ Func BrewSpells()
 		EndIf
 
 	Else
-
+		If $iTotalCountSpell = 0 Then Return
 		If $CurSFactory < $TotalSFactory Then ;  If not full the Spell Factory then try to make spells
 
 			; Spell Creation
