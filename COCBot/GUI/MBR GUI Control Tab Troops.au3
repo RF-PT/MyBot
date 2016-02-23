@@ -569,10 +569,6 @@ Func lblTotalCountSpell()
 		GUICtrlSetState($txtNumPoisonSpell, $GUI_DISABLE)
 		GUICtrlSetState($txtNumEarthSpell, $GUI_DISABLE)
 		GUICtrlSetState($txtNumHasteSpell, $GUI_DISABLE)
-		GUICtrlSetState($txtNumEarthquakeS, $GUI_DISABLE)
-
-
-
 		GUICtrlSetBkColor($txtNumLightningSpell, $COLOR_WHITE)
 		GUICtrlSetBkColor($txtNumHealSpell, $COLOR_WHITE)
 		GUICtrlSetBkColor($txtNumRageSpell, $COLOR_WHITE)
@@ -581,7 +577,6 @@ Func lblTotalCountSpell()
 		GUICtrlSetBkColor($txtNumPoisonSpell, $COLOR_WHITE)
 		GUICtrlSetBkColor($txtNumEarthSpell, $COLOR_WHITE)
 		GUICtrlSetBkColor($txtNumHasteSpell, $COLOR_WHITE)
-		GUICtrlSetBkColor($txtNumEarthquakeS, $COLOR_WHITE)
 	Else
 		$iTownHallLevel = Int($iTownHallLevel)
 		If $iTownHallLevel > 4 Or $iTownHallLevel = 0 Then

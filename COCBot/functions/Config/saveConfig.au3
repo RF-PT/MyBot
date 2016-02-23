@@ -926,7 +926,6 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "Spells", "EarthSpell", GUICtrlRead($txtNumEarthSpell))
 	IniWrite($config, "Spells", "HasteSpell", GUICtrlRead($txtNumHasteSpell))
 	IniWrite($config, "Spells", "SpellFactory", GUICtrlRead($txtTotalCountSpell))
-	IniWrite($config, "Spells", "EarthQSpell", GUICtrlRead($txtNumEarthquakeS))
 
 	;Misc Settings--------------------------------------------------------------------------
 	If $ichkWalls = 1 Then

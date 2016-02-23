@@ -635,7 +635,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$ichkHasteSpell[$DB] = IniRead($config, "attackCSV", "DBHasteSpell", "0")
 		$ichkHasteSpell[$LB] = IniRead($config, "attackCSV", "ABHasteSpell", "0")
 
-<<<<<<< HEAD
+
 		;SmartZap Settings--------------------------------------------------------------------------
 		$ichkSmartLightSpell = IniRead($config, "SmartZap", "SmartLightSpell", "0")
 		$ichkTrainLightSpell = IniRead($config, "SmartZap", "TrainLightSpell", "0")
@@ -643,7 +643,7 @@ Func readConfig() ;Reads config and sets it to the variables
 		$ichkDrillZapTH = IniRead($config, "SmartZap", "chkDrillZapTH", "0")
 		$useFFBarchST = IniRead($config, "SmartZap", "ChkSTFFBarch", "0")
 		$percentCollectors = IniRead($config, "SmartZap", "txtTHpercentCollectors", "80")
-=======
+
 		;MilkingAttack
 		$MilkFarmLocateMine = IniRead($config,"MilkingAttack","LocateMine","1")
 	    $MilkFarmLocateElixir = IniRead($config,"MilkingAttack","LocateElixir","1")
@@ -671,9 +671,6 @@ Func readConfig() ;Reads config and sets it to the variables
 ;~ 		$MilkFarmAlgorithmTh = IniRead($config,"MilkingAttack","TownHallAlgorithm","Bam")
 ;~ 		$MilkFarmSnipeEvenIfNoExtractorsFound = IniRead($config,"MilkingAttack","TownHallHitAnyway","1")
 
-
-
->>>>>>> 35e322bd4a4ac236a3a36b9d3c6f0cc120270e79
 	Else
 		Return False
 	EndIf

@@ -628,7 +628,7 @@ Func Test()
 Local $a , $b
 	$RunState = True
 	$a = DEDrillSearch()
-	$b = DEDrillSearchImgLoc()
+	;$b = DEDrillSearchImgLoc()
 	$RunState = False
 	$debugImageSave = 0
 EndFunc
