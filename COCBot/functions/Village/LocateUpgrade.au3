@@ -37,9 +37,9 @@ Func LocateUpgrades()
 			$bDisableBreakCheck = False  ; restore flag
 		EndIf
 		For $icount = 0 To 5
-			$stext = "Click 'Locate Building' button then click on your Building/Hero to upgrade." & @CRLF & @CRLF & "Click 'Finished' button when done locating all upgrades." & @CRLF & @CRLF & "Click on Cancel to exit finding buildings." & @CRLF & @CRLF
+			$stext = GetTranslated(25,28,"Click 'Locate Building' button then click on your Building/Hero to upgrade.") & @CRLF & @CRLF & GetTranslated(25,29,"Click 'Finished' button when done locating all upgrades.") & @CRLF & @CRLF & GetTranslated(25,30,"Click on Cancel to exit finding buildings.") & @CRLF & @CRLF
 			_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 10, "Comic Sans MS", 500)
-			$MsgBox = _ExtMsgBox(0, "Locate Building|Finished|Cancel", "Locate Upgrades", $stext, 0, $frmBot)
+			$MsgBox = _ExtMsgBox(0, GetTranslated(25,31,"Locate Building|Finished|Cancel"), GetTranslated(25,32,"Locate Upgrades"), $stext, 0, $frmBot)
 			Switch $MsgBox
 				Case 1 ; YES! we want to find a building.
 					WinActivate($HWnD) ; Activate Android Window
@@ -79,7 +79,7 @@ EndFunc   ;==>LocateUpgrades
 Func CheckUpgrades() ; Valdiate and determine the cost and type of the upgrade and change GUI boxes/pics to match
 	Local $MsgBox
 	_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 500)
-	$stext = "Keep Mouse OUT of BlueStacks Window While I Check Your Upgrades, Thanks!!"
+	$stext = GetTranslated(25,33,"Keep Mouse OUT of BlueStacks Window While I Check Your Upgrades, Thanks!!")
 	$MsgBox = _ExtMsgBox(48, "OK", "Notice!", $stext, 15, $frmBot)
 	If _Sleep($iDelayCheckUpgrades1) Then Return
 	If $MsgBox <> 1 Then

@@ -24,9 +24,9 @@ Func LocateLab()
 
 	While 1
 		_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 600)
-		$stext =  $sErrorText & @CRLF& "Click OK then click on your Laboratory building" & @CRLF & @CRLF & _
-		"Do not move mouse quickly after clicking location"& @CRLF & @CRLF & "Make sure the building name is visible for me!" & @CRLF
-		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", "Locate Laboratory", $stext, 15, $frmBot)
+		$stext =  $sErrorText & @CRLF& GetTranslated(25,1,"Click OK then click on your Laboratory building") & @CRLF & @CRLF & _
+		GetTranslated(25,2,"Do not move mouse quickly after clicking location") & @CRLF & @CRLF & GetTranslated(25,3,"Make sure the building name is visible for me!") & @CRLF
+		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", GetTranslated(25,4,"Locate Laboratory"), $stext, 15, $frmBot)
 		If $MsgBox = 1 Then
 		    WinGetAndroidHandle()
 			WinActivate($HWnD)

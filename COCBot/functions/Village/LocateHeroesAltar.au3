@@ -36,9 +36,9 @@ Func LocateQueenAltar()
 	SetLog("Locating Queen Altar...", $COLOR_BLUE)
 	While 1
 		_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 500)
-		$stext = $sErrorText & @CRLF & "Click OK then click on your Queen Altar" & @CRLF & @CRLF & _
-				"Do not move mouse after clicking location" & @CRLF & @CRLF & "Make sure the building name is visible for me!" & @CRLF
-		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", "Locate Queen Altar", $stext, 15, $frmBot)
+		$stext = $sErrorText & @CRLF & GetTranslated(25,5,"Click OK then click on your Queen Altar") & @CRLF & @CRLF & _
+				GetTranslated(25,6,"Do not move mouse after clicking location") & @CRLF & @CRLF & GetTranslated(25,7,"Make sure the building name is visible for me!") & @CRLF
+		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", GetTranslated(25,8,"Locate Queen Altar"), $stext, 15, $frmBot)
 		If $MsgBox = 1 Then
 		    WinGetAndroidHandle()
 			WinActivate($HWnD)
@@ -140,7 +140,7 @@ Func LocateQueenAltar()
 	If _Sleep(1000) Then Return
 
 	_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 500)
-	$stext = "Now you can remove mouse out of bluestacks, Thanks!!"
+	$stext = GetTranslated(25,9,"Now you can remove mouse out of bluestacks, Thanks!!")
 	$MsgBox = _ExtMsgBox(48, "OK", "Notice!", $stext, 15, $frmBot)
 
 	IniWrite($building, "other", "xQueenAltarPos", $QueenAltarPos[0])
@@ -165,9 +165,9 @@ Func LocateKingAltar()
 	While 1
 		ClickP($aTopLeftClient)
 		_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 500)
-		$stext = $sErrorText & @CRLF & "Click OK then click on your King Altar" & @CRLF & @CRLF & _
-				"Do not move mouse after clicking location" & @CRLF & @CRLF & "Make sure the building name is visible for me!" & @CRLF
-		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", "Locate King Altar", $stext, 15, $frmBot)
+		$stext = $sErrorText & @CRLF & GetTranslated(25,10,"Click OK then click on your King Altar") & @CRLF & @CRLF & _
+				GetTranslated(25,11,"Do not move mouse after clicking location") & @CRLF & @CRLF & GetTranslated(25,12,"Make sure the building name is visible for me!") & @CRLF
+		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", GetTranslated(25,13,"Locate King Altar"), $stext, 15, $frmBot)
 		If $MsgBox = 1 Then
 			WinGetAndroidHandle()
 			WinActivate($HWnD)
@@ -267,7 +267,7 @@ Func LocateKingAltar()
 	If _Sleep(1000) Then Return
 
 	_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 500)
-	$stext = "Now you can remove mouse out of bluestacks, Thanks!!"
+	$stext = GetTranslated(25,14,"Now you can remove mouse out of bluestacks, Thanks!!")
 	$MsgBox = _ExtMsgBox(48, "OK", "Notice!", $stext, 15, $frmBot)
 
 	IniWrite($building, "other", "xKingAltarPos", $KingAltarPos[0])
@@ -300,9 +300,9 @@ Func LocateWardenAltar()
 	While 1
 		ClickP($aTopLeftClient)
 		_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 500)
-		$stext = $sErrorText & @CRLF & "Click OK then click on your Grand Warden Altar" & @CRLF & @CRLF & _
-				"Do not move mouse after clicking location" & @CRLF & @CRLF & "Make sure the building name is visible for me!" & @CRLF
-		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", "Locate Grand Warden Altar", $stext, 15, $frmBot)
+		$stext = $sErrorText & @CRLF & GetTranslated(25,15,"Click OK then click on your Grand Warden Altar") & @CRLF & @CRLF & _
+				GetTranslated(25,16,"Do not move mouse after clicking location") & @CRLF & @CRLF & GetTranslated(25,17,"Make sure the building name is visible for me!") & @CRLF
+		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", GetTranslated(25,18,"Locate Grand Warden Altar"), $stext, 15, $frmBot)
 		If $MsgBox = 1 Then
 			WinGetAndroidHandle()
 			WinActivate($HWnD)
@@ -403,7 +403,7 @@ Func LocateWardenAltar()
 	If _Sleep(1000) Then Return
 
 	_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 500)
-	$stext = "Now you can remove mouse out of bluestacks, Thanks!!"
+	$stext = GetTranslated(25,19,"Now you can remove mouse out of bluestacks, Thanks!!")
 	$MsgBox = _ExtMsgBox(48, "OK", "Notice!", $stext, 15, $frmBot)
 
 	IniWrite($building, "other", "xWardenAltarPos", $WardenAltarPos[0])

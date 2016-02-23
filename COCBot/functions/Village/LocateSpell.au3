@@ -26,9 +26,9 @@ Func LocateSpellFactory()
 	While 1
 		ClickP($aAway,1,0,"#0385")
 		_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 500)
-		$stext = $sErrorText & @CRLF & "Click OK then click on your Spell Factory" & @CRLF & @CRLF & _
-		"Do not move mouse quickly after clicking location"& @CRLF & @CRLF & "Make sure the building name is visible for me!" & @CRLF
-		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", "Locate Spell Factory", $stext, 15, $frmBot)
+		$stext = $sErrorText & @CRLF & GetTranslated(25,20,"Click OK then click on your Spell Factory") & @CRLF & @CRLF & _
+		GetTranslated(25,21,"Do not move mouse quickly after clicking location") & @CRLF & @CRLF & GetTranslated(25,22,"Make sure the building name is visible for me!") & @CRLF
+		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", GetTranslated(25,23,"Locate Spell Factory"), $stext, 15, $frmBot)
 		If $MsgBox = 1 Then
 		    WinGetAndroidHandle()
 			WinActivate($HWnD)
@@ -127,9 +127,9 @@ Func LocateDarkSpellFactory()
 
 	While 1
 		_ExtMsgBoxSet(1 + 64, $SS_CENTER, 0x004080, 0xFFFF00, 12, "Comic Sans MS", 500)
-		$stext = $sErrorText & @CRLF & "Click OK then click on your Dark Spell Factory" & @CRLF & @CRLF & _
-		"Do not move mouse quickly after clicking location"& @CRLF & @CRLF & "Make sure the building name is visible for me!" & @CRLF
-		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", "Locate Dark Spell Factory", $stext, 15, $frmBot)
+		$stext = $sErrorText & @CRLF & GetTranslated(25,24,"Click OK then click on your Dark Spell Factory") & @CRLF & @CRLF & _
+		GetTranslated(25,25,"Do not move mouse quickly after clicking location") & @CRLF & @CRLF & GetTranslated(25,26,"Make sure the building name is visible for me!") & @CRLF
+		$MsgBox = _ExtMsgBox(0, "Ok|Cancel", GetTranslated(25,27,"Locate Dark Spell Factory"), $stext, 15, $frmBot)
 		If $MsgBox = 1 Then
 		    WinGetAndroidHandle()
 			WinActivate($HWnD)
