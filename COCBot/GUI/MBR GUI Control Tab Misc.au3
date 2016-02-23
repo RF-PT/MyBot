@@ -17,6 +17,7 @@ Func cmbProfile()
 	saveConfig()
 
 	FileClose($hLogFileHandle)
+	FileClose($hLogFileHandleAndroid)
 	FileClose($hAttackLogFileHandle)
 
 	; Setup the profile in case it doesn't exist.

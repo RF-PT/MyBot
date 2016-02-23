@@ -36,6 +36,7 @@ Func deleteProfile()
 	If FileExists($deletePath) Then
 		; Close the logs to ensure all files can be deleted.
 		FileClose($hLogFileHandle)
+		FileClose($hLogFileHandleAndroid)
 		FileClose($hAttackLogFileHandle)
 
 		; Remove the directory and all files and sub folders.

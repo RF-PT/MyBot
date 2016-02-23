@@ -17,9 +17,18 @@ Func CreateLogFile()
 		FileClose($hLogFileHandle)
 		$hLogFileHandle = ""
 	EndIf
+	 if $hLogFileHandleAndroid <>"" Then
+		FileClose($hLogFileHandleAndroid)
+		$hLogFileHandleAndroid = ""
+	 EndIf
+
     $sLogFName = @YEAR & "-" & @MON & "-" & @MDAY & "_" & @HOUR & "." & @MIN & "." & @SEC & ".log"
 	$sLogPath = $dirLogs & $sLogFName
 	$hLogFileHandle = FileOpen($sLogPath, $FO_APPEND)
+	$sLogFNameAndroid = @YEAR & "-" & @MON & "-" & @MDAY & "_" & @HOUR & "." & @MIN & "." & @SEC & "_Android.log"
+	$sLogPath = $dirLogs & $sLogFNameAndroid
+	$hLogFileHandleAndroid = FileOpen($sLogPath, $FO_APPEND)
+
 EndFunc   ;==>CreateLogFile
 
 ; #FUNCTION# ====================================================================================================================

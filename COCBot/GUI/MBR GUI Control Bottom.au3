@@ -296,6 +296,9 @@ Func btnStop()
 			$Restart = True
 			FileClose($hLogFileHandle)
 			$hLogFileHandle = ""
+			FileClose($hLogFileHandleAndroid)
+			$hLogFileHandleAndroid = ""
+
 			FileClose($hAttackLogFileHandle)
 			$hAttackLogFileHandle = ""
 		Else

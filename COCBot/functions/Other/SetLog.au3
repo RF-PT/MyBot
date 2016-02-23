@@ -55,8 +55,8 @@ Func SetDebugLog($String, $Color = $COLOR_PURPLE, $Font = "Verdana", $FontSize =
    If $debugSetlog = 1 Then
 	  SetLog($String, $Color, $Font, $FontSize, $statusbar, Time(), False, $LogPrefix)
    Else
-	  If $hLogFileHandle = "" Then CreateLogFile()
-	  __FileWriteLog($hLogFileHandle, $log)
+	  If $hLogFileHandleAndroid = "" Then CreateLogFile()
+	  __FileWriteLog($hLogFileHandleAndroid, $log)
    EndIf
 EndFunc   ;==>SetDebugLog
 

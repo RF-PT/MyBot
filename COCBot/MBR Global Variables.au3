@@ -257,6 +257,7 @@ Global $aDonIcons[17] = [$eIcnDonBarbarian, $eIcnDonArcher, $eIcnDonGiant, $eIcn
 Global $sLogPath ; `Will create a new log file every time the start button is pressed
 Global $sAttackLogPath ; `Will create a new log file every time the start button is pressed
 Global $hLogFileHandle
+Global $hLogFileHandleAndroid
 Global $hAttackLogFileHandle
 Global $iCmbLog = 0
 Global $Restart = False
@@ -296,6 +297,7 @@ Global $pOOS
 Global $pTakeAbreak
 Global $pAnotherDevice
 Global $sLogFName
+Global $sLogFNameAndroid
 Global $sAttackLogFName
 Global $AttackFile
 Global $RequestScreenshot = 0
