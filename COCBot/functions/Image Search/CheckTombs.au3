@@ -64,7 +64,8 @@ EndFunc   ;==>CheckTombs
 
 Func CleanYard()
 
-	If $ichkCleanYard = 0 Then Return
+	If $ichkCleanYard <> 1 Then Return
+	Local $RemovedObstacles = 0
 
 	$aGetBuilders = StringSplit(getBuilders($aBuildersDigits[0], $aBuildersDigits[1]), "#", $STR_NOCOUNT)
 	If IsArray($aGetBuilders) Then
@@ -89,6 +90,7 @@ Func CleanYard()
 	Local $TotalBuilders = ""
 
 	If $iFreeBuilderCount > 0 Then
+		SetLog("Removing Obstacles...", $COLOR_BLUE)
 		For $i = 0 To 7
 			_WinAPI_DeleteObject($hBitmapFirst)
 			$hBitmapFirst = _CaptureRegion2()
@@ -117,6 +119,7 @@ Func CleanYard()
 							   ClickP($aAway, 2, 300, "#0329") ;Click Away
 							   If _Sleep($iDelayCheckTombs1) Then Return
 							   $aGetBuilders = StringSplit(getBuilders($aBuildersDigits[0], $aBuildersDigits[1]), "#", $STR_NOCOUNT)
+							   $RemovedObstacles +=1
 							   If IsArray($aGetBuilders) Then
 								   $iFreeBuilderCount = $aGetBuilders[0]
 								   $TotalBuilders = $aGetBuilders[1]
@@ -133,7 +136,8 @@ Func CleanYard()
 			EndIf
 		Next
 	EndIf
-	_WinAPI_DeleteObject($hBitmapFirst)
+
+	If $RemovedObstacles = 0 then SetLog("No Obstacles found, Yard is clean!", $COLOR_PURPLE)
 
 	UpdateStats()
 	ClickP($aAway, 1, 300, "#0329") ;Click Away
