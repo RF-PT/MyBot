@@ -1092,6 +1092,7 @@ EndIf
 
 ;Zap Drill
 Global $tabSmartZap
+Global $tabScheduler
 Global $ichkSmartLightSpell
 Global $ichkTrainLightSpell
 Global $iDrills[4][4] = [[-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1], [-1, -1, -1, -1]] ; [LocX, LocY, BldgLvl, Quantity=filled by other functions]
