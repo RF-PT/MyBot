@@ -1653,17 +1653,6 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 		GUICtrlSetState($chkABHasteSpellCSV, $GUI_UNCHECKED)
 	EndIf
 
-
-
-
-
-
-
-
-
-
-
-
 	Switch $iActivateKQConditionCSV
 		Case "Manual"
 			GUICtrlSetState($radManAbilitiesCSV, $GUI_CHECKED)
@@ -1749,5 +1738,28 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 
 	; Reenabling window redraw
 	If $bRedrawAtExit Then SetRedrawBotWindow(True)
+
+	;Mod AttackHour
+	If $iPlannedAttackHoursEnable = 1 Then
+		GUICtrlSetState($chkAttackHours, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkAttackHours, $GUI_UNCHECKED)
+	EndIf
+	chkAttackHours()
+	For $i = 0 To 23
+		If $iPlannedDonateHours[$i] = 1 Then
+			GUICtrlSetState(Eval("chkDonateHours" & $i), $GUI_CHECKED)
+		Else
+			GUICtrlSetState(Eval("chkDonateHours" & $i), $GUI_UNCHECKED)
+		EndIf
+	Next
+	For $i = 0 To 23
+		If $iPlannedAttackHours[$i] = '1' Then
+			GUICtrlSetState(Eval("chkAttackHours" & $i), $GUI_CHECKED)
+		Else
+			GUICtrlSetState(Eval("chkAttackHours" & $i), $GUI_UNCHECKED)
+		EndIf
+	Next
+	;--> Mod AttackHour
 
 EndFunc   ;==>applyConfig

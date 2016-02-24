@@ -1271,9 +1271,6 @@ Func saveConfig() ;Saves the controls settings to the config
 		IniWrite($config, "shareattack", "ShareAttack", 0)
 	EndIf
 
-
-
-
 	;screenshot
 	If GUICtrlRead($chkScreenshotType) = $GUI_CHECKED Then
 		IniWrite($config, "other", "ScreenshotType", 1)
@@ -1621,6 +1618,24 @@ Func saveConfig() ;Saves the controls settings to the config
 	EndIf
 
 	IniWrite($config, "SmartZap", "txtTHpercentCollectors", GUICtrlRead($txtTHpercentCollectors))
+
+	;Mod AttackHour
+	Local $string = ""
+	For $i = 0 To 23
+		If GUICtrlRead(Eval("chkAttackHours" & $i)) = $GUI_CHECKED Then
+			$string &= "1|"
+		Else
+			$string &= "0|"
+		EndIf
+	Next
+	IniWrite($config, "Boju", "AttackHours", $string)
+
+	If GUICtrlRead($chkAttackHours) = $GUI_CHECKED Then
+		IniWrite($config, "Boju", "AttackHoursEnable", 1)
+	Else
+		IniWrite($config, "Boju", "AttackHoursEnable", 0)
+	EndIf
+	;--> Mod AttackHour
 
 	If $hFile <> -1 Then FileClose($hFile)
 

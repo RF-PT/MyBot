@@ -52,6 +52,7 @@ $loadTheme = GUICtrlCreateMenuItem("Load Theme", $configMenu)
 #include "GUI\MBR GUI Design Tab Notify.au3"
 #include "GUI\MBR GUI Design Tab Expert.au3"
 #include "GUI\MBR GUI Design Tab SmartZap.au3"
+#include "GUI\MBR GUI Design Tab Scheduler.au3"
 #include "GUI\MBR GUI Design Tab Stats.au3" ; includes '$LastControlToHide" on GUI
 #include "GUI\MBR GUI Design Collectors.au3"
 #include "GUI\MBR GUI Design Milking.au3"

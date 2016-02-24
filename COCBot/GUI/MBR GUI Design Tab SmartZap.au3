@@ -13,7 +13,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-$tabSmartZap = GUICtrlCreateTabItem("SmartZap")
+$tabSmartZap = GUICtrlCreateTabItem("SmartZ")
 	;;;;;;;;;;;;;;;;;
     ;;;;SmartZap;;;;;
     ;;;;;;;;;;;;;;;;;

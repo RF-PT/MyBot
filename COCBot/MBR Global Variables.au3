@@ -1132,3 +1132,11 @@ Global $ExtendedCocSearchArea = "15|25|825|625" ; Extended
 ; Similarity ( like tolerance ) 0,00 to 1,00
 Global $ToleranceImgLoc = 0.95
 
+;Mod AttackHour
+Global $iplannedattackhoursenable
+Global $iPlannedAttackHours[24]
+Global $fullArmy1 = False
+Global $hourAttack
+Global Const $iDelayWaitAttack = 120000
+;--> Mod AttackHour
+

@@ -136,8 +136,8 @@ Func CleanYard()
 			EndIf
 		Next
 	EndIf
-
-	If $RemovedObstacles = 0 then SetLog("No Obstacles found, Yard is clean!", $COLOR_PURPLE)
+	If $iFreeBuilderCount = 0 Then Setlog("No Builders available!", $COLOR_PURPLE)
+	If $RemovedObstacles = 0 and $iFreeBuilderCount > 0 then SetLog("No Obstacles found, Yard is clean!", $COLOR_PURPLE)
 
 	UpdateStats()
 	ClickP($aAway, 1, 300, "#0329") ;Click Away
