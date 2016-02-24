@@ -67,6 +67,7 @@ Func GoldElixirChangeEBO()
 	While TimerDiff($iBegin) < $z
 		;HEALTH HEROES
 		CheckHeroesHealth()
+		OverallDamage()
 
 		;DE SPECIAL END EARLY
 		If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 6 And $DESideEB Then
