@@ -45,7 +45,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			SetLog(_PadStringCenter(" Skip " & $sModeText[$x] & " - Hero Not Ready " & BitAND($iHeroAttack[$x], $iHeroWait[$x], $iHeroAvailable) & "|" & $iHeroAvailable, 54, "="), $COLOR_RED)
 			ContinueLoop ; check if herowait selected and hero available for each search mode
 		EndIf
-		If $x = $iCmbSearchMode Or $iCmbSearchMode = 2 Then
+		If ($x = 0 And $iCmbSearchMode = 0) Or ($x = 0 And $iCmbSearchMode = 2) or ($x = 1 And $iCmbSearchMode = 1) Or ($x = 1 And $iCmbSearchMode = 2) Or ($x = 2 And $OptTrophyMode = 1) Or ($x = 2 And $iChkSnipeWhileTrain = 1) Then
 
 			If Not ($Is_SearchLimit) Then SetLog(_PadStringCenter(" Searching For " & $sModeText[$x] & " ", 54, "="), $COLOR_BLUE)
 
@@ -160,24 +160,24 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		If _Sleep($iDelayRespond) Then Return
 		Switch $iCmbSearchMode
 			Case 0 ; check Dead Base only
-				If $iHeroWait[$DB] = 0  Or ($iHeroWait[$DB] > 0 And BitAND($iHeroAttack[$DB], $iHeroWait[$DB], $iHeroAvailable) = $iHeroWait[$DB]) Then ; check hero wait/avail
+				If $iHeroWait[$DB] = 0 Or ($iHeroWait[$DB] > 0 And BitAND($iHeroAttack[$DB], $iHeroWait[$DB], $iHeroAvailable) = $iHeroWait[$DB]) Then ; check hero wait/avail
 					$isModeActive[$DB] = True
 					$match[$DB] = CompareResources($DB)
 					;$noMatchTxt &= ", DB compare " & BitAND($iHeroAttack[$DB], $iHeroWait[$DB], $iHeroAvailable)  ; use for debug
 				Else
 					$noMatchTxt &= ", DB Hero Not Ready, "
 				EndIf
-			Case 1  ; Check Live Base only
-				If $iHeroWait[$LB] = 0  Or ($iHeroWait[$LB] > 0 And BitAND($iHeroAttack[$LB], $iHeroWait[$LB], $iHeroAvailable) = $iHeroWait[$LB]) Then  ; check hero wait/avail
+			Case 1 ; Check Live Base only
+				If $iHeroWait[$LB] = 0 Or ($iHeroWait[$LB] > 0 And BitAND($iHeroAttack[$LB], $iHeroWait[$LB], $iHeroAvailable) = $iHeroWait[$LB]) Then ; check hero wait/avail
 					$isModeActive[$LB] = True
 					$match[$LB] = CompareResources($LB)
 					;$noMatchTxt &= ", LB compare " & BitAND($iHeroAttack[$LB], $iHeroWait[$LB], $iHeroAvailable) ; use for debug
 				Else
 					$noMatchTxt &= ", LB Hero Not Ready, "
 				EndIf
-			Case  2
+			Case 2
 				For $i = 0 To $iModeCount - 2
-					If $iHeroWait[$i] = 0  Or ($iHeroWait[$i] > 0 And BitAND($iHeroAttack[$i],$iHeroWait[$i], $iHeroAvailable) = $iHeroWait[$i]) Then  ; check hero wait/avail
+					If $iHeroWait[$i] = 0 Or ($iHeroWait[$i] > 0 And BitAND($iHeroAttack[$i], $iHeroWait[$i], $iHeroAvailable) = $iHeroWait[$i]) Then ; check hero wait/avail
 						$isModeActive[$i] = IsSearchModeActive($i)
 						If $isModeActive[$i] Then
 							$match[$i] = CompareResources($i)
@@ -193,7 +193,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		For $i = 0 To $iModeCount - 2
 			If $isModeActive[$i] Then $bSearchSafe = True
 		Next
-		If $bSearchSafe = False And ($OptBullyMode = 0 And $OptTrophyMode = 0) Then  ; no search modes are active.
+		If $bSearchSafe = False And ($OptBullyMode = 0 And $OptTrophyMode = 0) Then ; no search modes are active.
 			Setlog("ERROR - Check Hero Wait & Search Start Values!!", $COLOR_RED)
 			If _Sleep($iDelayRespond) Then Return
 			Setlog("Search Logic Error occured and will NEVER find base!!!", $COLOR_RED)
@@ -225,33 +225,33 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 
 		If $match[$DB] Or $match[$LB] Then
 			$dbBase = checkDeadBase()
-	    EndIf
+		EndIf
 
-	    Local $MilkingExtractorsMatch = 0
+		Local $MilkingExtractorsMatch = 0
 		$MilkFarmObjectivesSTR = ""
-		If $match[$LB] and $iChkDeploySettings[$LB] = 6 Then ;MilkingAttack
-			If $debugsetlog=1 Then Setlog("Check Milking...",$COLOR_BLUE)
+		If $match[$LB] And $iChkDeploySettings[$LB] = 6 Then ;MilkingAttack
+			If $debugsetlog = 1 Then Setlog("Check Milking...", $COLOR_BLUE)
 			MilkingDetectRedArea()
 			$MilkingExtractorsMatch = MilkingDetectElixirExtractors()
-			If $MilkingExtractorsMatch >0 Then
+			If $MilkingExtractorsMatch > 0 Then
 				$MilkingExtractorsMatch += MilkingDetectMineExtractors() + MilkingDetectDarkExtractors()
 			EndIf
-			If StringLen($MilkFarmObjectivesSTR) >0 and $debugsetlog=1 Then
-				Setlog("Match for Milking",$COLOR_BLUE)
+			If StringLen($MilkFarmObjectivesSTR) > 0 And $debugsetlog = 1 Then
+				Setlog("Match for Milking", $COLOR_BLUE)
 			Else
-				Setlog("Not a Match for Milking",$COLOR_BLUE)
+				Setlog("Not a Match for Milking", $COLOR_BLUE)
 			EndIf
 		EndIf
 
-	    ResumeAndroid()
+		ResumeAndroid()
 
 		If _Sleep($iDelayRespond) Then Return
-		If $match[$LB] and $iChkDeploySettings[$LB]=6  and StringLen($MilkFarmObjectivesSTR) >0  Then
-					SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
-					SetLog("      " & "Milking Attack! ", $COLOR_GREEN, "Lucida Console", 7.5)
-					$logwrited = True
-					$iMatchMode = $LB
-					ExitLoop
+		If $match[$LB] And $iChkDeploySettings[$LB] = 6 And StringLen($MilkFarmObjectivesSTR) > 0 Then
+			SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
+			SetLog("      " & "Milking Attack! ", $COLOR_GREEN, "Lucida Console", 7.5)
+			$logwrited = True
+			$iMatchMode = $LB
+			ExitLoop
 		ElseIf $match[$DB] And $dbBase Then
 			SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
 			SetLog("      " & "Dead Base Found! ", $COLOR_GREEN, "Lucida Console", 7.5)
@@ -263,13 +263,13 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 				_WinAPI_DeleteObject($hBitmap)
 			EndIf
 			ExitLoop
-		ElseIf $match[$LB] And Not $dbBase and $iChkDeploySettings[$LB]<>6 Then
+		ElseIf $match[$LB] And Not $dbBase And $iChkDeploySettings[$LB] <> 6 Then
 			SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
 			SetLog("      " & "Live Base Found!", $COLOR_GREEN, "Lucida Console", 7.5)
 			$logwrited = True
 			$iMatchMode = $LB
 			ExitLoop
-		ElseIf $match[$LB] Or $match[$DB]  and $iChkDeploySettings[$LB]<>6 Then
+		ElseIf $match[$LB] Or $match[$DB] And $iChkDeploySettings[$LB] <> 6 Then
 			If $OptBullyMode = 1 And ($SearchCount >= $ATBullyMode) Then
 				If $SearchTHLResult = 1 Then
 					SetLog($GetResourcesTXT, $COLOR_GREEN, "Lucida Console", 7.5)
@@ -278,7 +278,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 					$iMatchMode = $iTHBullyAttackMode
 					ExitLoop
 				EndIf
-			 EndIf
+			EndIf
 		EndIf
 
 		If _Sleep($iDelayRespond) Then Return
@@ -413,7 +413,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 
 		If $searchTH = "-" Then ; retry with autoit search after $iDelayVillageSearch5 seconds
 			If _Sleep($iDelayVillageSearch5) Then Return
-			If $debugsetlog=1 Then SetLog("2nd attempt to detect the TownHall!", $COLOR_RED)
+			If $debugsetlog = 1 Then SetLog("2nd attempt to detect the TownHall!", $COLOR_RED)
 			$searchTH = THSearch()
 		EndIf
 
@@ -438,20 +438,175 @@ Func IsSearchModeActive($pMode)
 EndFunc   ;==>IsSearchModeActive
 
 Func IsWeakBase($pMode)
+
+	Local $hWeakTimer = TimerInit()
 	_WinAPI_DeleteObject($hBitmapFirst)
 	$hBitmapFirst = _CaptureRegion2()
-	Local $resultHere = DllCall($hFuncLib, "str", "CheckConditionForWeakBase", "ptr", $hBitmapFirst, "int", ($iCmbWeakMortar[$pMode] + 1), "int", ($iCmbWeakWizTower[$pMode] + 1), "int", 10)
-	If @error Then ; detect if DLL error and return weakbase not found
-		SetLog("Weakbase search DLL error", $COLOR_RED)
-		Return False
+
+	Local $ImageInfo1 = ""
+	Local $ImageInfo = ""
+
+	$aToleranceImgLoc = 0.94
+	Local $WeakBaseMortarX, $WeakBaseMortarY
+	Local $WeakBaseMortarLoc = 0
+
+	Local $WeakBaseMortarImages[8][3]
+	$WeakBaseMortarImages[0][0] = @ScriptDir & "\images\WeakBase\Mortars\Lv1_1.png"
+	$WeakBaseMortarImages[0][1] = @ScriptDir & "\images\WeakBase\Mortars\Lv1_2.png"
+	$WeakBaseMortarImages[0][2] = @ScriptDir & "\images\WeakBase\Mortars\Lv1_3.png"
+
+	$WeakBaseMortarImages[1][0] = @ScriptDir & "\images\WeakBase\Mortars\Lv2_1.png"
+	$WeakBaseMortarImages[1][1] = @ScriptDir & "\images\WeakBase\Mortars\Lv2_2.png"
+	$WeakBaseMortarImages[1][2] = @ScriptDir & "\images\WeakBase\Mortars\Lv2_3.png"
+
+	$WeakBaseMortarImages[2][0] = @ScriptDir & "\images\WeakBase\Mortars\Lv3_1.png"
+	$WeakBaseMortarImages[2][1] = @ScriptDir & "\images\WeakBase\Mortars\Lv3_2.png"
+	$WeakBaseMortarImages[2][2] = @ScriptDir & "\images\WeakBase\Mortars\Lv3_3.png"
+
+	$WeakBaseMortarImages[3][0] = @ScriptDir & "\images\WeakBase\Mortars\Lv4_1.png"
+	$WeakBaseMortarImages[3][1] = @ScriptDir & "\images\WeakBase\Mortars\Lv4_2.png"
+	$WeakBaseMortarImages[3][2] = @ScriptDir & "\images\WeakBase\Mortars\Lv4_3.png"
+
+	$WeakBaseMortarImages[4][0] = @ScriptDir & "\images\WeakBase\Mortars\Lv5_1.png"
+	$WeakBaseMortarImages[4][1] = @ScriptDir & "\images\WeakBase\Mortars\Lv5_2.png"
+	$WeakBaseMortarImages[4][2] = @ScriptDir & "\images\WeakBase\Mortars\Lv5_3.png"
+
+	$WeakBaseMortarImages[5][0] = @ScriptDir & "\images\WeakBase\Mortars\Lv6_1.png"
+	$WeakBaseMortarImages[5][1] = @ScriptDir & "\images\WeakBase\Mortars\Lv6_2.png"
+	$WeakBaseMortarImages[5][2] = @ScriptDir & "\images\WeakBase\Mortars\Lv6_3.png"
+
+	$WeakBaseMortarImages[6][0] = @ScriptDir & "\images\WeakBase\Mortars\Lv7_1.png"
+	$WeakBaseMortarImages[6][1] = @ScriptDir & "\images\WeakBase\Mortars\Lv7_2.png"
+	$WeakBaseMortarImages[6][2] = @ScriptDir & "\images\WeakBase\Mortars\Lv7_3.png"
+
+	$WeakBaseMortarImages[7][0] = @ScriptDir & "\images\WeakBase\Mortars\Lv8_1.png"
+	$WeakBaseMortarImages[7][1] = @ScriptDir & "\images\WeakBase\Mortars\Lv8_2.png"
+	$WeakBaseMortarImages[7][2] = @ScriptDir & "\images\WeakBase\Mortars\Lv8_3.png"
+
+	If $iCmbWeakMortar[$pMode] > 0 And $iCmbWeakMortar[$pMode] < 8 Then
+		For $i = ($iCmbWeakMortar[$pMode]) To 7
+			For $t = 0 To 2
+				If FileExists($WeakBaseMortarImages[$i][$t]) Then
+					Local $res = DllCall($pImgLib, "str", "SearchTile", "handle", $hBitmapFirst, "str", $WeakBaseMortarImages[$i][$t], "float", $aToleranceImgLoc, "str", $DefaultCocSearchArea, "str", $DefaultCocDiamond)
+					If IsArray($res) Then
+						If $debugsetlog = 1 Then SetLog("DLL Call succeeded " & $res[0], $COLOR_RED)
+						If $res[0] = "0" Then
+							; failed to find a Mortar on the field
+							If $debugsetlog = 1 Then SetLog("No Mortars found For level:" & $i + 1, $COLOR_PURPLE)
+							$WeakBaseMortarLoc = 0
+						ElseIf $res[0] = "-1" Then
+							SetLog("DLL inside Error", $COLOR_RED)
+						ElseIf $res[0] = "-2" Then
+							SetLog("Invalid Resolution", $COLOR_RED)
+						Else
+							$expRet = StringSplit($res[0], "|", 2)
+							For $j = 1 To UBound($expRet) - 1 Step 2
+								$WeakBaseMortarX = Int($expRet[$j])
+								$WeakBaseMortarY = Int($expRet[$j + 1])
+								$WeakBaseMortarLoc = 1
+								$ImageInfo = String("MortarLv_" & $i + 1 & "-" & $t)
+								If $debugsetlog = 1 Then SetLog("Found Mortar Lv" & $i + 1 & " (" & $WeakBaseMortarX & "/" & $WeakBaseMortarY & ")", $COLOR_RED)
+								If $debugsetlog = 1 Then SetLog("Is Not a weak Base!..", $COLOR_RED)
+								ExitLoop (3)
+							Next
+						EndIf
+					EndIf
+				EndIf
+			Next
+		Next
+	Else
+		$WeakBaseMortarLoc = 0
 	EndIf
-	If $debugsetlog = 1 Then Setlog("Weakbase result= " & $resultHere[0], $COLOR_PURPLE) ;debug
-	If $resultHere[0] = "Y" Then
+
+	Local $aToleranceImg[9] = [0.95, 0.95, 0.94, 0.94, 0.94, 0.92, 0.92, 0.92, 0.92]
+	Local $WeakBaseWTowerX, $WeakBaseWTowerY
+	Local $WeakBaseWTowerLoc = 0
+
+	Local $WeakBaseWTowerImages[9]
+	$WeakBaseWTowerImages[0] = @ScriptDir & "\images\WeakBase\WTower\lv1.png"
+	$WeakBaseWTowerImages[1] = @ScriptDir & "\images\WeakBase\WTower\Lv2.png"
+	$WeakBaseWTowerImages[2] = @ScriptDir & "\images\WeakBase\WTower\Lv3.png"
+	$WeakBaseWTowerImages[3] = @ScriptDir & "\images\WeakBase\WTower\Lv4.png"
+	$WeakBaseWTowerImages[4] = @ScriptDir & "\images\WeakBase\WTower\Lv5.png"
+	$WeakBaseWTowerImages[5] = @ScriptDir & "\images\WeakBase\WTower\Lv6.png"
+	$WeakBaseWTowerImages[6] = @ScriptDir & "\images\WeakBase\WTower\Lv7.png"
+	$WeakBaseWTowerImages[7] = @ScriptDir & "\images\WeakBase\WTower\Lv8.png"
+	$WeakBaseWTowerImages[8] = @ScriptDir & "\images\WeakBase\WTower\Lv9.png"
+
+	If $iCmbWeakWizTower[$pMode] > 0 And $iCmbWeakWizTower[$pMode] < 9 Then
+		For $i = $iCmbWeakWizTower[$pMode] To 8
+			If FileExists($WeakBaseWTowerImages[$i]) Then
+				Local $res = DllCall($pImgLib, "str", "SearchTile", "handle", $hBitmapFirst, "str", $WeakBaseWTowerImages[$i], "float", $aToleranceImg[$i], "str", $DefaultCocSearchArea, "str", $DefaultCocDiamond)
+				If IsArray($res) Then
+					If $debugsetlog = 1 Then SetLog("DLL Call succeeded " & $res[0], $COLOR_RED)
+					If $res[0] = "0" Then
+						; failed to find a Mortar on the field
+						If $debugsetlog = 1 Then SetLog("No Wizard Tower found for that level:" & $i + 1, $COLOR_PURPLE)
+						$WeakBaseWTowerLoc = 0
+					ElseIf $res[0] = "-1" Then
+						SetLog("DLL inside Error", $COLOR_RED)
+					ElseIf $res[0] = "-2" Then
+						SetLog("Invalid Resolution", $COLOR_RED)
+					Else
+						$expRet = StringSplit($res[0], "|", 2)
+						For $j = 1 To UBound($expRet) - 1 Step 2
+							$WeakBaseWTowerX = Int($expRet[$j])
+							$WeakBaseWTowerY = Int($expRet[$j + 1])
+							$WeakBaseWTowerLoc = 1
+							$ImageInfo1 = String("WTowerLv_" & $i + 1 & "-" & $t)
+							If $debugsetlog = 1 Then SetLog("Found Wizard Tower Lv" & $i + 1 & " (" & $WeakBaseWTowerX & "/" & $WeakBaseWTowerY & ")", $COLOR_RED)
+							If $debugsetlog = 1 Then SetLog("Is Not a weak Base!..", $COLOR_RED)
+							ExitLoop (2)
+						Next
+					EndIf
+				EndIf
+			EndIf
+		Next
+	Else
+		$WeakBaseWTowerLoc = 0
+	EndIf
+
+	If $debugsetlog = 1 Then SetLog("  - Calculated  in: " & Round(TimerDiff($hWeakTimer) / 1000, 2) & " seconds ", $COLOR_TEAL)
+	Local $WeakTimer = String(Round(TimerDiff($hWeakTimer) / 1000, 2) & " seconds")
+
+	If $WeakBaseWTowerLoc = 0 And $WeakBaseMortarLoc = 0 Then
 		Return True
 	Else
+		CaptureStrongBasewithInfo($WeakBaseMortarX, $WeakBaseMortarY, $WeakBaseWTowerX, $WeakBaseWTowerY, $ImageInfo, $ImageInfo1, $WeakTimer)
 		Return False
 	EndIf
+
 EndFunc   ;==>IsWeakBase
+
+
+Func CaptureStrongBasewithInfo($WeakBaseMortarX, $WeakBaseMortarY, $WeakBaseWTowerX, $WeakBaseWTowerY, $ImageInfo, $ImageInfo1, $WeakTimer)
+	Local $EditedImage
+	_CaptureRegion()
+
+	$EditedImage = $hBitmap
+
+	Local $hGraphic = _GDIPlus_ImageGetGraphicsContext($EditedImage)
+	Local $hPen = _GDIPlus_PenCreate(0xFFFF0000, 2) ;create a pencil Color FF0000/RED
+
+	_GDIPlus_GraphicsDrawRect($hGraphic, $WeakBaseMortarX - 5, $WeakBaseMortarY - 5, 10, 10, $hPen)
+	_GDIPlus_GraphicsDrawRect($hGraphic, $WeakBaseWTowerX - 5, $WeakBaseWTowerY - 5, 10, 10, $hPen)
+	_GDIPlus_GraphicsDrawString($hGraphic, $ImageInfo, 401, 63, "Arial", 15)
+	_GDIPlus_GraphicsDrawString($hGraphic, $ImageInfo1, 401, 105, "Arial", 15)
+	_GDIPlus_GraphicsDrawString($hGraphic, $WeakTimer, 401, 125, "Arial", 15)
+
+	Local $Date = @YEAR & "-" & @MON & "-" & @MDAY
+	Local $Time = @HOUR & "." & @MIN & "." & @SEC
+	Local $filename = String("StrongBaseDetected_" & $Date & "_" & $Time & "_" & $ImageInfo & ".png")
+
+	If $debugBuildingPos = 1 And $debugsetlog = 1 Then Setlog(" _GDIPlus_ImageSaveToFile", $COLOR_PURPLE)
+	Local $savefolder = $dirTempDebug & "StrongBaseDetected_" & "\"
+	DirCreate($savefolder)
+	_GDIPlus_ImageSaveToFile($EditedImage, $savefolder & $filename)
+	_GDIPlus_PenDispose($hPen)
+	_GDIPlus_GraphicsDispose($hGraphic)
+
+EndFunc   ;==>CaptureStrongBasewithInfo
+
 
 Func SearchLimit($iSkipped)
 	If $iChkRestartSearchLimit = 1 And $iSkipped >= Number($iRestartSearchlimit) Then
