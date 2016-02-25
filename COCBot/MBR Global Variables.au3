@@ -1141,3 +1141,8 @@ Global $hourAttack
 Global Const $iDelayWaitAttack = 120000
 ;--> Mod AttackHour
 
+;---> AwesomeGamer CSV Attack & Deploying troops
+Global $TroopDropNumber = 0
+Global $remainingTroops[12][2]
+Global $iRadClickSpeedFast, $radClickSpeedFast, $radClickSpeedNormal
+Global $hDll
