@@ -566,10 +566,12 @@ Func IsWeakBase($pMode)
 		$WeakBaseWTowerLoc = 0
 	EndIf
 
-	If $debugsetlog = 1 Then SetLog("  - Calculated  in: " & Round(TimerDiff($hWeakTimer) / 1000, 2) & " seconds ", $COLOR_TEAL)
+
 	Local $WeakTimer = String(Round(TimerDiff($hWeakTimer) / 1000, 2) & " seconds")
 
 	If $WeakBaseWTowerLoc = 0 And $WeakBaseMortarLoc = 0 Then
+
+		SetLog("  - Calculated  in: " & Round(TimerDiff($hWeakTimer) / 1000, 2) & " seconds ", $COLOR_TEAL)
 		Return True
 	Else
 		CaptureStrongBasewithInfo($WeakBaseMortarX, $WeakBaseMortarY, $WeakBaseWTowerX, $WeakBaseWTowerY, $ImageInfo, $ImageInfo1, $WeakTimer)
