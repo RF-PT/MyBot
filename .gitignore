@@ -22,6 +22,9 @@
 # Exclusion Curl (used for PushBullet)
 ![Cc]url.exe
 
+# Exclusion Exe Maincode
+![Mm]ybot.run.exe
+
 # Exclusion Language .ini's
 ![Ll]anguages/*.ini
 
