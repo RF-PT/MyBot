@@ -1104,7 +1104,7 @@ Global $txtMinDark
 Global $iLTSpellCost, $LTSCost , $LTSpellCost
 
 ; Attack settings
-Global Enum $eOneSide, $eTwoSides, $eThreeSides, $eAllSides, $eSmartSave, $eFourFinger, $eDESide, $eTHSide
+;Global Enum $eOneSide, $eTwoSides, $eThreeSides, $eAllSides, $eSmartSave, $eFourFinger, $eDESide, $eTHSide
 
 ; Type of Spell in the CC, this will be the second entry for the spell on the bar
 Global $CCSpellType

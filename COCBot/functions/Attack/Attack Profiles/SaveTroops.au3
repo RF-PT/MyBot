@@ -63,7 +63,7 @@ Func LaunchSaveTroops($listInfoDeploy, $CC, $King, $Queen, $Warden, $overrideSma
 
 			$nbSides = 5
 
-			Local $FFListDeploy = getDeploymentInfo($nbSides, $eFourFinger)
+			Local $FFListDeploy = getDeploymentInfo($nbSides, 4)
 
 			LaunchFourFinger($FFListDeploy, $CC, $King, $Queen, $Warden, 1)
 
