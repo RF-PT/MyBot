@@ -1,0 +1,91 @@
+NOTE  |Author: iSm0keD.
+NOTE  |
+NOTE  |TH7 Attack: DE Side attack with GiBam
+NOTE  |Make these Troops: 12 Giants, 8 Wall Breakers, Barbarians 40%, Archers 60%, 15-20 Minions 1+ Heal Spell
+
+
+      |-----------------------------------------------------------------------------------------------|
+      |                                                                                               |
+      |                                                                                               |
+
+
+      |EXTR. GOLD |EXTR.ELIXIR|EXTR. DARK |DEPO. GOLD |DEPO.ELIXIR|DEPO. DARK |TOWNHALL   |FORCED SIDE|
+SIDE  |0          |0          |0          |0          |0          |5          |0          |           |
+
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE VECTOR FOR INITIAL ATTACK WITH FUNNEL, GIANTS, WALL BREAKERS, BARBARIANS AND ARCHERS...
+MAKE  |A          |FRONT-LEFT |10         |1          |INT-EXT    |0          |5          |           |vector for giant front left 
+MAKE  |B          |FRONT-RIGHT|10         |1          |INT-EXT    |0          |5          |           |vector for giant front right
+MAKE  |C          |FRONT-LEFT |10         |2          |INT-EXT    |0          |5          |           |vector for wall breaker front left 
+MAKE  |D          |FRONT-RIGHT|10         |2          |INT-EXT    |0          |5          |           |vector for wall breaker front right
+MAKE  |E          |FRONT-LEFT |10         |10         |EXT-INT    |0          |5          |           |vector for barbarians front left
+MAKE  |F          |FRONT-RIGHT|10         |10         |EXT-INT    |0          |5          |           |vector for barbarians front right
+MAKE  |G          |FRONT-LEFT |10         |10         |EXT-INT    |0          |5          |           |vector for archers front left
+MAKE  |H          |FRONT-RIGHT|10         |10         |EXT-INT    |0          |5          |           |vector for archers front right
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |A-B        |2          |1          |giant      |0          |0          |800-1200   |           |launch giant (2 giant, one front left and one front right)       
+DROP  |E          |1-10       |10         |barb       |0          |0          |200-600    |           |launch 10 barbarian
+DROP  |F          |1-10       |10         |barb       |0          |0          |200-600    |           |launch 10 barbarian
+DROP  |E          |1-10       |10         |arch       |0          |0          |800-1200   |           |launch 10 archer
+DROP  |F          |1-10       |10         |arch       |0          |0          |800-1200   |           |launch 10 archer
+DROP  |C-D        |2          |2          |wall       |0          |0          |0          |           |launch wall breaker (4 wall breaker, two front left and two front right)     
+
+
+WAIT  |2000   |           |           |           |           |           |           |           |Add a wait time; during wait time also CHECK exit values (exit if no resource left, exit if one or two starts reach)
+
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE VECTOR FOR FRONT SIDE ATTACK: GIANTS, WALL BREAKERS, BARBARIANS AND ARCHERS...
+MAKE  |A          |FRONT-LEFT |10         |1          |INT-EXT    |0          |5          |           |vector for giant front left 
+MAKE  |B          |FRONT-RIGHT|10         |1          |INT-EXT    |0          |5          |           |vector for giant front right
+MAKE  |C          |FRONT-LEFT |10         |2          |INT-EXT    |0          |5          |           |vector for wall breaker front left 
+MAKE  |D          |FRONT-RIGHT|10         |2          |INT-EXT    |0          |5          |           |vector for wall breaker front right
+MAKE  |E          |FRONT-LEFT |10         |2          |INT-EXT    |0          |5          |           |vector for barbarians front left
+MAKE  |F          |FRONT-RIGHT|10         |2          |INT-EXT    |0          |5          |           |vector for barbarians front right
+MAKE  |G          |FRONT-LEFT |10         |3          |INT-EXT    |0          |5          |           |vector for archers front left
+MAKE  |H          |FRONT-RIGHT|10         |3          |INT-EXT    |0          |5          |           |vector for archers front right
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |A-B        |1-2        |20         |giant      |0          |0          |800-1200   |           |launch 10 giant        in 2 drop point (use drop point number 1,2) x 2 sides       
+DROP  |C-D        |1-2        |20         |wall       |0          |0          |800-1200   |           |launch 10 wall breaker in 2 drop point (use drop point number 1,2) x 2 sides     
+DROP  |E-F        |1-3        |30         |barb       |0          |0          |800-1200   |           |launch 10 barbarian    in 3 drop point (use drop point number 1,2,3) x 2 sides
+DROP  |G-H        |1-3        |30         |arch       |0          |0          |800-1200   |           |launch 10 archers      in 3 drop point (use drop point number 1,2,3) x 2 sides
+DROP  |A-B        |1-2        |25         |mini       |0          |0          |800-1200   |           |launch all minions
+
+WAIT  |2000       |           |           |           |           |           |           |           |Add a wait time; during wait time also CHECK exit values (exit if no resource left, exit if one or two starts reach)
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE VECTOR TO LAUNCH THE SPELLS
+MAKE  |A          |FRONT-LEFT |80         |-8         |INT-EXT    |0          |5          |           |
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |A          |1          |1          |HSpell     |0          |0          |300-500    |           |Heal Spell at -8 tiles from redarea
+
+
+WAIT  |2500-3000  |           |           |           |           |           |           |           |Add a wait time; during wait time also CHECK exit values (exit if no resource left, exit if one or two starts reach)
+
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE VECTOR TO DEPLOY KING, QUEEN, G. WARDEN AND CASTLE
+MAKE  |A          |FRONT-LEFT |50         |1          |INT-EXT    |0          |5          |           | 
+MAKE  |B          |FRONT-LEFT |50         |2          |INT-EXT    |0          |5          |           | 
+MAKE  |C          |FRONT-LEFT |50         |3          |INT-EXT    |0          |5          |           |       
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |A          |3          |1          |castle     |0          |0          |100-300    |           |launch Castle
+DROP  |B          |3          |1          |king       |0          |0          |100-500    |           |launch King
+
+WAIT  |500-1000   |           |           |           |           |           |           |           |Add a wait time; during wait time also CHECK exit values (exit if no resource left, exit if one or two starts reach)
+RECALC|           |           |           |           |           |           |           |           |recalculate remaining troops and then launch...
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE VECTOR FOR ALL IN ATTACK...
+MAKE  |A          |FRONT-LEFT |10         |2          |INT-EXT    |0          |5          |           |vector for barbarians front left
+MAKE  |B          |FRONT-RIGHT|10         |2          |INT-EXT    |0          |5          |           |vector for barbarians front right
+MAKE  |C          |FRONT-LEFT |10         |3          |INT-EXT    |0          |5          |           |vector for archers front left
+MAKE  |D          |FRONT-RIGHT|10         |3          |INT-EXT    |0          |5          |           |vector for archers front right
+MAKE  |E          |FRONT-LEFT |10         |2          |INT-EXT    |0          |5          |           |vector for goblins front left
+MAKE  |F          |FRONT-RIGHT|10         |2          |INT-EXT    |0          |5          |           |vector for goblins front right
+MAKE  |G          |FRONT-LEFT |10         |3          |INT-EXT    |0          |5          |           |vector for minions front left
+MAKE  |H          |FRONT-RIGHT|10         |3          |INT-EXT    |0          |5          |           |vector for minions front right
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |A-B        |1-5        |100        |barb       |0          |0          |0          |           |launch remaining barbarian in 5 drop point (use drop point number 1,2,3,4,5) x 2 sides  - remaining barb
+DROP  |C-D        |1-5        |100        |arch       |0          |0          |0          |           |launch remaining archers   in 5 drop point (use drop point number 1,2,3,4,5) x 2 sides  - remaining arch
+DROP  |E-F        |1-5        |100        |gobl       |0          |0          |0          |           |launch remaining goblins   in 5 drop point (use drop point number 1,2,3,4,5) x 2 sides  - remaining minions
+DROP  |G-H        |7-10       |100        |mini       |0          |0          |100-300    |           |launch remaining minions   in 4 drop point (use drop point number 7,8,9,10) x 2 sides   - remaining minions
+
+      |                                                                                               |
+      |-----------------------------------------------------------------------------------------------|

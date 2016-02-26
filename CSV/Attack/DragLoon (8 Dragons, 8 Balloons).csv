@@ -1,0 +1,50 @@
+NOTE  |Author: Bad Brad
+NOTE  |Made for 200 troop capacity tested on TH8
+NOTE  |Attack: DragLoon w/Rage spell
+NOTE  |Make these Troops: DragLoon=8 Dragons, 8 Balloons
+NOTE  |Will drop dragons on side with most Gold/Elixir Depo, All Heroes and Castle if enabled from GUI
+
+      |---------------------------------------- four fingers barch start -----------------------------|
+
+      |EXTR. GOLD |EXTR.ELIXIR|EXTR. DARK |DEPO. GOLD |DEPO.ELIXIR|DEPO. DARK |TOWNHALL   |FORCED SIDE|
+SIDE  |1          |1          |           |2          |2          |           |           |           |
+
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE DRAGON VECTORS
+MAKE  |A          |FRONT-RIGHT|6          |1          |EXT-INT    |0          |0          |           |
+MAKE  |B          |FRONT-LEFT |6          |1          |EXT-INT    |0          |0          |           |
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|DROP DRAGONS 
+WAIT  |500-1000   |           |           |           |           |           |           |           |
+DROP  |A-B        |3-6        |4          |Drag       |10-20      |1000       |15000      |           |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE BALLOONS VECTORS
+MAKE  |C          |FRONT-RIGHT|10          |1          |INT-EXT    |0          |0          |           |
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|DROP BALLOONS
+DROP  |C          |1          |9          |Ball       |10-20      |10         |0          |           |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE VECTORS TO DROP KINK, QUEEN and CASTLE
+MAKE  |R          |FRONT-RIGHT|10         |1          |INT-EXT    |0          |0          |           |
+MAKE  |Q          |FRONT-LEFT |10         |1          |INT-EXT    |0          |0          |           |
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________| 
+DROP  |R          |1          |1          |castle     |0          |0          |100-500    |           |
+DROP  |Q          |1          |1          |king       |0          |0          |100-500    |           |
+DROP  |R          |1          |1          |queen      |0          |0          |100-500    |           |
+DROP  |R          |1          |1          |Warden     |0          |0          |0          |           |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE RAGE SPELLS VECTORS
+MAKE  |D          |FRONT-RIGHT|10         |-10        |INT-EXT    |0          |0          |           |
+MAKE  |E          |FRONT-LEFT |5          |-10        |EXT-INT    |0          |0          |           |NOT USED YET STILL WORKING ON BETTER PLACEMENT
+MAKE  |F          |FRONT-RIGHT|5          |-10        |EXT-INT    |0          |0          |           |NOT USED YET STILL WORKING ON BETTER PLACEMENT
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|DROP RAGE SPELLS
+DROP  |D          |1          |1          |RSpell     |35-60      |45-65      |1000       |           |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|DROP REMAINING DRAGONS IF RED LINE CAUSED INITIAL MISSING DROP
+MAKE  |G          |FRONT-LEFT |1          |1          |INT-EXT    |0          |0          |           |
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |G          |1          |3          |Drag       |35-60      |45-65      |150-200    |           |
+
+WAIT  |5000       |           |           |           |           |           |           |           |
+      |                                                                                               |
+      |------------------------------------- four fingers barch end-----------------------------------|
+
+

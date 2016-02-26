@@ -1,0 +1,80 @@
+NOTE  |Author:karthik- ver. 1.0 - 29.01.2016
+NOTE  |ATTENTION!!-select queen in gui when using this attack
+NOTE  |Attack:queen walk with gibarch
+NOTE  |Make these Troops: 8-10 Giants, Barb 40%, Arch 60%,4 healers,8 wbs, 
+NOTE  |will walk from the side adjacent to de side and gibarch on closest side
+
+      |EXTR. GOLD |EXTR.ELIXIR|EXTR. DARK |DEPO. GOLD |DEPO.ELIXIR|DEPO. DARK |TOWNHALL   |FORCED SIDE|
+SIDE  |           |           |           |           |           |5          |           |           |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|
+MAKE  |A          |RIGHT-BACK |10         |1          |INT-EXT    |0          |5          |           | 
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|
+MAKE  |B          |FRONT-RIGHT|10         |1          |INT-EXT    |0          |5          |           | 
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|
+MAKE  |C          |FRONT-LEFT |10         |1          |INT-EXT    |0          |5          |           |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|
+MAKE  |D          |FRONT-LEFT |20         |2          |EXT-INT    |0          |5          |           |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|
+MAKE  |E          |FRONT-RIGHT|20         |2          |EXT-INT    |0          |5          |           |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|
+MAKE  |F          |FRONT-LEFT |10         |-7         |EXT-INT    |0          |5          |           |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|
+MAKE  |G          |BACK-RIGHT |10         |2          |EXT-INT    |0          |5          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |A          |8          |1          |queen      |0          |0           |0         |           |
+
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |A          |8          |4          |heal       |0          |0          |050-100    |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |G          |1-10       |25         |arch       |0          |0          |60000       |           |
+
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |B-C        |1-5        |5          |giant     |0          |0          |200        |           |
+      
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |B-C        | 3         |2          |wall       |0          |0          |100-200    |           |
+ 
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |D-E        |10-20      |15-25      |arch       |0          |0          |50-150     |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |D-E        |10-20      |15-25      |barb       |0          |0          |100-200    |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |F          | 10         |1         |Rspell     |0          |0          |50-200     |           |
+ 
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |B-C        | 3         |2          |wall       |0          |0          |800-1200   |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |D-E        |19-20      |20         |arch       |0          |0          |800-1200   |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |D-E        |19-20      |20         |barb       |0          |0          |800-1200   |           |
+ 
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |B          |1          |1          |king       |0          |0          |800-1200   |           |
+
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |B          |1          |1          |castle     |0          |0          |800-1200   |           |
+
+
+RECALC|           |           |           |           |           |           |           |           |
+ 
+WAIT  |100-300    |           |           |           |           |           |           |           |
+
+

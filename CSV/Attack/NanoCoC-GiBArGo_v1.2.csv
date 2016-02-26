@@ -1,0 +1,51 @@
+NOTE  |Author: NanoCoC - ver. 1.0 - 10.02.2016
+NOTE  |
+NOTE  |Attack: GiArGo
+NOTE  |Make these Troops: 20 Giants, 12 WB's, Barb 25%, Arch 60%, Gobs 15%
+NOTE  |Will drop giants, barbs & arch then rage then pepper wb's to break into core
+
+
+      |-----------------------------------------------------------------------------------------------|
+      |                                                                                               |
+      |                                                                                               |
+
+      |EXTR. GOLD |EXTR.ELIXIR|EXTR. DARK |DEPO. GOLD |DEPO.ELIXIR|DEPO. DARK |TOWNHALL   |FORCED SIDE|
+SIDE  |0          |0          |2          |0          |0          |10         |           |           |
+
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE VECTOR FOR FRONT SIDE ATTACK: GIANTS, BARBARIANS AND ARCHERS...
+MAKE  |A          |FRONT-LEFT |10         |1          |INT-EXT    |0          |2          |           |vector for giant front left 
+MAKE  |B          |FRONT-RIGHT|10         |1          |INT-EXT    |0          |2          |           |vector for giant front right
+MAKE  |C          |FRONT-LEFT |10         |3          |INT-EXT    |0          |3          |           |vector for archers front left
+MAKE  |D          |FRONT-RIGHT|10         |3          |INT-EXT    |0          |3          |           |vector for archers front right
+MAKE  |E          |FRONT-LEFT |10         |3          |INT-EXT    |0          |3          |           |vector for goblins front left
+MAKE  |F          |FRONT-RIGHT|10         |3          |INT-EXT    |0          |3          |           |vector for goblins front right
+MAKE  |G          |FRONT-LEFT |10         |1          |INT-EXT    |0          |1          |           |vector for wall breakers front left
+MAKE  |H          |FRONT-RIGHT|10         |1          |INT-EXT    |0          |1          |           |vector for wall breakers front right
+MAKE  |I          |FRONT-LEFT |60         |-6         |INT-EXT    |0          |1          |           |vector for rage spell
+
+
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |A-B        |1-5        |2          |giant      |0          |0          |3000       |           |launch 4 giants
+DROP  |A-B        |1-6        |10         |barb       |0          |0          |100-300    |           |launch 20 barbarians
+DROP  |C-D        |1-6        |20         |arch       |0          |0          |100-300    |           |launch 20 archers 
+DROP  |C-D        |1-6        |10         |wiza       |0          |0          |100-300    |           |launch 20 wizards
+DROP  |I          |1          |1          |RSpell     |0          |0          |0          |           |Drop Rage Spell
+DROP  |G          |1          |2          |wall       |500        |0          |0          |           |launch 2 wall breakers into rage
+DROP  |G          |5          |2          |wall       |0          |0          |0          |           |launch 2 wall breakers
+DROP  |H          |5          |2          |wall       |0          |0          |0          |           |launch 2 wall breakers
+DROP  |A-B        |1-6        |7          |giant      |0          |0          |1200       |           |launch 2nd wave of giants
+DROP  |G          |1          |2          |wall       |1300       |0          |1300       |           |launch 2 wall breakers into rage
+DROP  |G          |1          |2          |wall       |1300       |0          |1300       |           |launch 2 wall breakers into rage
+DROP  |G          |1          |2          |wall       |1300       |0          |1300       |           |launch 2 wall breakers into rage
+DROP  |G          |1          |2          |wall       |0          |0          |0          |           |launch 2 wall breakers into rage
+DROP  |A          |1          |1          |castle     |0          |0          |100-300    |           |launch Castle  
+DROP  |A          |1          |1          |king       |0          |0          |100-300    |           |launch King   
+DROP  |A          |1          |1          |queen      |0          |0          |100-300    |           |launch Queen  
+DROP  |A-B        |1-5        |10         |giant      |0          |0          |5000       |           |launch giants
+DROP  |A-B        |1-6        |10         |barb       |0          |0          |3000       |           |launch 20 barbarians
+DROP  |C-D        |1-6        |20         |arch       |0          |0          |2000       |           |launch rest of archers
+DROP  |E          |1          |20         |gobl       |0          |0          |0          |           |launch all goblins
+
+RECALC|           |           |           |           |           |           |           |           |recalculate remaining troops and then launch...
