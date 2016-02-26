@@ -347,7 +347,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	EndIf
 
 	If GUICtrlRead($chkUseCCBalanced) = $GUI_CHECKED Then
-		IniWrite($config, "attack", "BalanceCC", 0)
+		IniWrite($config, "attack", "BalanceCC", 1)
 	Else
 		IniWrite($config, "attack", "BalanceCC", 0)
 	EndIf
