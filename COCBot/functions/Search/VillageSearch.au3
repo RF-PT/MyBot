@@ -45,7 +45,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 			SetLog(_PadStringCenter(" Skip " & $sModeText[$x] & " - Hero Not Ready " & BitAND($iHeroAttack[$x], $iHeroWait[$x], $iHeroAvailable) & "|" & $iHeroAvailable, 54, "="), $COLOR_RED)
 			ContinueLoop ; check if herowait selected and hero available for each search mode
 		EndIf
-		If ($x = 0 And $iCmbSearchMode = 0) Or ($x = 0 And $iCmbSearchMode = 2) or ($x = 1 And $iCmbSearchMode = 1) Or ($x = 1 And $iCmbSearchMode = 2) Or ($x = 2 And $OptTrophyMode = 1) Or ($x = 2 And $iChkSnipeWhileTrain = 1) Then
+		If ($x = 0 And $iCmbSearchMode = 0) Or ($x = 0 And $iCmbSearchMode = 2) Or ($x = 1 And $iCmbSearchMode = 1) Or ($x = 1 And $iCmbSearchMode = 2) Or ($x = 2 And $OptTrophyMode = 1) Or ($x = 2 And $iChkSnipeWhileTrain = 1) Then
 
 			If Not ($Is_SearchLimit) Then SetLog(_PadStringCenter(" Searching For " & $sModeText[$x] & " ", 54, "="), $COLOR_BLUE)
 
@@ -440,13 +440,63 @@ EndFunc   ;==>IsSearchModeActive
 Func IsWeakBase($pMode)
 
 	Local $hWeakTimer = TimerInit()
-	_WinAPI_DeleteObject($hBitmapFirst)
-	$hBitmapFirst = _CaptureRegion2()
-
 	Local $ImageInfo1 = ""
 	Local $ImageInfo = ""
 
-	$aToleranceImgLoc = 0.94
+	Local $aToleranceImg[9] = [0.93, 0.93, 0.93, 0.94, 0.94, 0.92, 0.92, 0.92, 0.92]
+	Local $WeakBaseWTowerX, $WeakBaseWTowerY
+	Local $WeakBaseWTowerLoc = 0
+
+	Local $WeakBaseWTowerImages[9]
+	$WeakBaseWTowerImages[0] = @ScriptDir & "\images\WeakBase\WTower\lv1.png"
+	$WeakBaseWTowerImages[1] = @ScriptDir & "\images\WeakBase\WTower\Lv2.png"
+	$WeakBaseWTowerImages[2] = @ScriptDir & "\images\WeakBase\WTower\Lv3.png"
+	$WeakBaseWTowerImages[3] = @ScriptDir & "\images\WeakBase\WTower\Lv4.png"
+	$WeakBaseWTowerImages[4] = @ScriptDir & "\images\WeakBase\WTower\Lv5.png"
+	$WeakBaseWTowerImages[5] = @ScriptDir & "\images\WeakBase\WTower\Lv6.png"
+	$WeakBaseWTowerImages[6] = @ScriptDir & "\images\WeakBase\WTower\Lv7.png"
+	$WeakBaseWTowerImages[7] = @ScriptDir & "\images\WeakBase\WTower\Lv8.png"
+	$WeakBaseWTowerImages[8] = @ScriptDir & "\images\WeakBase\WTower\Lv9.png"
+
+	If $iCmbWeakWizTower[$pMode] > 0 And $iCmbWeakWizTower[$pMode] < 9 Then
+		For $i = $iCmbWeakWizTower[$pMode] To 8
+			_WinAPI_DeleteObject($hBitmapFirst)
+			$hBitmapFirst = _CaptureRegion2(200, 160, 675, 500)
+			If FileExists($WeakBaseWTowerImages[$i]) Then
+				Local $res = DllCall($pImgLib, "str", "MBRDeadBase", "handle", $hBitmapFirst, "str", $WeakBaseWTowerImages[$i], "float", $aToleranceImg[$i], "str", "1")
+				If IsArray($res) Then
+					If $debugsetlog = 1 Then SetLog("DLL Call succeeded " & $res[0], $COLOR_RED)
+					If $res[0] = "0" Then
+						; failed to find a Mortar on the field
+						If $debugsetlog = 1 Then SetLog("No Wizard Tower found for that level:" & $i + 1, $COLOR_PURPLE)
+						$WeakBaseWTowerLoc = 0
+					ElseIf $res[0] = "-1" Then
+						SetLog("DLL inside Error", $COLOR_RED)
+					ElseIf $res[0] = "-2" Then
+						SetLog("Invalid Resolution", $COLOR_RED)
+					Else
+						$expRet = StringSplit($res[0], "|", 2)
+						For $j = 1 To UBound($expRet) - 1 Step 2
+							$WeakBaseWTowerX = Int($expRet[$j]) + 200
+							$WeakBaseWTowerY = Int($expRet[$j + 1]) + 160
+							$WeakBaseWTowerLoc = 1
+							$ImageInfo1 = String("WTowerLv_" & $i + 1 & "-" & $t)
+							If $debugsetlog = 1 Then SetLog("Found Wizard Tower Lv" & $i + 1 & " (" & $WeakBaseWTowerX & "/" & $WeakBaseWTowerY & ")", $COLOR_RED)
+							If $debugsetlog = 1 Then SetLog("Is Not a weak Base!..", $COLOR_RED)
+							ExitLoop (2)
+						Next
+					EndIf
+				EndIf
+			EndIf
+		Next
+	Else
+		$WeakBaseWTowerLoc = 0
+	EndIf
+
+	_WinAPI_DeleteObject($hBitmapFirst)
+	$hBitmapFirst = _CaptureRegion2(200, 160, 675, 500)
+
+	Local $aToleranceImgM[8] = [0.91, 0.91, 0.92, 0.92, 0.92, 0.93, 0.89, 0.90]
 	Local $WeakBaseMortarX, $WeakBaseMortarY
 	Local $WeakBaseMortarLoc = 0
 
@@ -483,11 +533,13 @@ Func IsWeakBase($pMode)
 	$WeakBaseMortarImages[7][1] = @ScriptDir & "\images\WeakBase\Mortars\Lv8_2.png"
 	$WeakBaseMortarImages[7][2] = @ScriptDir & "\images\WeakBase\Mortars\Lv8_3.png"
 
-	If $iCmbWeakMortar[$pMode] > 0 And $iCmbWeakMortar[$pMode] < 8 Then
+	If $iCmbWeakMortar[$pMode] > 0 And $iCmbWeakMortar[$pMode] < 8 And $WeakBaseWTowerLoc = 0 Then
 		For $i = ($iCmbWeakMortar[$pMode]) To 7
+			_WinAPI_DeleteObject($hBitmapFirst)
+			$hBitmapFirst = _CaptureRegion2(200, 160, 675, 500)
 			For $t = 0 To 2
 				If FileExists($WeakBaseMortarImages[$i][$t]) Then
-					Local $res = DllCall($pImgLib, "str", "SearchTile", "handle", $hBitmapFirst, "str", $WeakBaseMortarImages[$i][$t], "float", $aToleranceImgLoc, "str", $DefaultCocSearchArea, "str", $DefaultCocDiamond)
+					Local $res = DllCall($pImgLib, "str", "MBRDeadBase", "handle", $hBitmapFirst, "str", $WeakBaseMortarImages[$i][$t], "float", $aToleranceImgM[$i], "str", "1")
 					If IsArray($res) Then
 						If $debugsetlog = 1 Then SetLog("DLL Call succeeded " & $res[0], $COLOR_RED)
 						If $res[0] = "0" Then
@@ -501,8 +553,8 @@ Func IsWeakBase($pMode)
 						Else
 							$expRet = StringSplit($res[0], "|", 2)
 							For $j = 1 To UBound($expRet) - 1 Step 2
-								$WeakBaseMortarX = Int($expRet[$j])
-								$WeakBaseMortarY = Int($expRet[$j + 1])
+								$WeakBaseMortarX = Int($expRet[$j]) + 200
+								$WeakBaseMortarY = Int($expRet[$j + 1]) + 160
 								$WeakBaseMortarLoc = 1
 								$ImageInfo = String("MortarLv_" & $i + 1 & "-" & $t)
 								If $debugsetlog = 1 Then SetLog("Found Mortar Lv" & $i + 1 & " (" & $WeakBaseMortarX & "/" & $WeakBaseMortarY & ")", $COLOR_RED)
@@ -516,54 +568,6 @@ Func IsWeakBase($pMode)
 		Next
 	Else
 		$WeakBaseMortarLoc = 0
-	EndIf
-
-	Local $aToleranceImg[9] = [0.95, 0.95, 0.94, 0.94, 0.94, 0.92, 0.92, 0.92, 0.92]
-	Local $WeakBaseWTowerX, $WeakBaseWTowerY
-	Local $WeakBaseWTowerLoc = 0
-
-	Local $WeakBaseWTowerImages[9]
-	$WeakBaseWTowerImages[0] = @ScriptDir & "\images\WeakBase\WTower\lv1.png"
-	$WeakBaseWTowerImages[1] = @ScriptDir & "\images\WeakBase\WTower\Lv2.png"
-	$WeakBaseWTowerImages[2] = @ScriptDir & "\images\WeakBase\WTower\Lv3.png"
-	$WeakBaseWTowerImages[3] = @ScriptDir & "\images\WeakBase\WTower\Lv4.png"
-	$WeakBaseWTowerImages[4] = @ScriptDir & "\images\WeakBase\WTower\Lv5.png"
-	$WeakBaseWTowerImages[5] = @ScriptDir & "\images\WeakBase\WTower\Lv6.png"
-	$WeakBaseWTowerImages[6] = @ScriptDir & "\images\WeakBase\WTower\Lv7.png"
-	$WeakBaseWTowerImages[7] = @ScriptDir & "\images\WeakBase\WTower\Lv8.png"
-	$WeakBaseWTowerImages[8] = @ScriptDir & "\images\WeakBase\WTower\Lv9.png"
-
-	If $iCmbWeakWizTower[$pMode] > 0 And $iCmbWeakWizTower[$pMode] < 9 Then
-		For $i = $iCmbWeakWizTower[$pMode] To 8
-			If FileExists($WeakBaseWTowerImages[$i]) Then
-				Local $res = DllCall($pImgLib, "str", "SearchTile", "handle", $hBitmapFirst, "str", $WeakBaseWTowerImages[$i], "float", $aToleranceImg[$i], "str", $DefaultCocSearchArea, "str", $DefaultCocDiamond)
-				If IsArray($res) Then
-					If $debugsetlog = 1 Then SetLog("DLL Call succeeded " & $res[0], $COLOR_RED)
-					If $res[0] = "0" Then
-						; failed to find a Mortar on the field
-						If $debugsetlog = 1 Then SetLog("No Wizard Tower found for that level:" & $i + 1, $COLOR_PURPLE)
-						$WeakBaseWTowerLoc = 0
-					ElseIf $res[0] = "-1" Then
-						SetLog("DLL inside Error", $COLOR_RED)
-					ElseIf $res[0] = "-2" Then
-						SetLog("Invalid Resolution", $COLOR_RED)
-					Else
-						$expRet = StringSplit($res[0], "|", 2)
-						For $j = 1 To UBound($expRet) - 1 Step 2
-							$WeakBaseWTowerX = Int($expRet[$j])
-							$WeakBaseWTowerY = Int($expRet[$j + 1])
-							$WeakBaseWTowerLoc = 1
-							$ImageInfo1 = String("WTowerLv_" & $i + 1 & "-" & $t)
-							If $debugsetlog = 1 Then SetLog("Found Wizard Tower Lv" & $i + 1 & " (" & $WeakBaseWTowerX & "/" & $WeakBaseWTowerY & ")", $COLOR_RED)
-							If $debugsetlog = 1 Then SetLog("Is Not a weak Base!..", $COLOR_RED)
-							ExitLoop (2)
-						Next
-					EndIf
-				EndIf
-			EndIf
-		Next
-	Else
-		$WeakBaseWTowerLoc = 0
 	EndIf
 
 
