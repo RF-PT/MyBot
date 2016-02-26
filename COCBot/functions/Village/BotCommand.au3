@@ -20,7 +20,7 @@ Func BotCommand()
 		;$icmbBotCond = _GUICtrlComboBox_GetCurSel($cmbBotCond)
 		;$icmbBotCommand = _GUICtrlComboBox_GetCurSel($cmbBotCommand)
 		;$icmbHoursStop = _GUICtrlComboBox_GetCurSel($cmbHoursStop)
-		If $icmbBotCond = 13 And $icmbHoursStop <> 0 Then $TimeToStop = $icmbHoursStop * 3600000 ; 3600000 = 1 Hours
+		If $icmbBotCond = 15 And $icmbHoursStop <> 0 Then $TimeToStop = $icmbHoursStop * 3600000 ; 3600000 = 1 Hours
 
 		Local $iTrophyCurrent = getTrophyMainScreen($aTrophies[0], $aTrophies[1])
 		Local $TrophyMax = Number($iTrophyCurrent) > Number($itxtMaxTrophy)
