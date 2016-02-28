@@ -1,0 +1,110 @@
+NOTE  |Author: metabeealex09 - ver. 1.5 - 02.09.2016
+NOTE  |
+NOTE  |Attack: FF GiBarch, +1 tile from redline
+NOTE  |Make these Troops: 16 Giants, 8 WallBs, Barbarians 50%, Archers 50%
+NOTE  |Will drop Giants, Wallb, Barb, Arch, Castle, All Heroes if enabled from GUI
+
+      |---------------------------------------- four fingers barch start -----------------------------|
+
+      |EXTR. GOLD |EXTR.ELIXIR|EXTR. DARK |DEPO. GOLD |DEPO.ELIXIR|DEPO. DARK |TOWNHALL   |FORCED SIDE|
+SIDE  |1          |1          |2          |           |           |           |           |           |RANDOM
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE GIANT VECTORS
+MAKE  |E          |FRONT-LEFT |20         |1          |INT-EXT    |2          |2          |           |from middle sides sx and dx to up and down vertex (20 drop points)
+MAKE  |F          |RIGHT-BACK |20         |1          |INT-EXT    |2          |2          |           |
+MAKE  |G          |LEFT-FRONT |20         |1          |INT-EXT    |2          |2          |           |
+MAKE  |H          |BACK-RIGHT |20         |1          |INT-EXT    |2          |2          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|DROP GIANTS
+DROP  |E-F-G-H    |1-4        |4          |giant      |40-65      |50-70      |400-650    |           |launch giants using all 4 vectors concurrently...
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE WALLB VECTORS
+MAKE  |E          |FRONT-LEFT |20         |2          |INT-EXT    |2          |2          |           |from middle sides sx and dx to up and down vertex (20 drop points)
+MAKE  |F          |RIGHT-BACK |20         |2          |INT-EXT    |2          |2          |           |
+MAKE  |G          |LEFT-FRONT |20         |2          |INT-EXT    |2          |2          |           |
+MAKE  |H          |BACK-RIGHT |20         |2          |INT-EXT    |2          |2          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|DROP WALLB
+DROP  |E-F-G-H    |1          |2          |wall       |40-65      |50-70      |450-700    |           |launch wallbs using all 4 vectors concurrently...
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE BARBARIAN VECTORS
+MAKE  |A          |FRONT-RIGHT|22         |1          |EXT-INT    |2          |2          |           |from vertex sx and dx to middle sides (20 drop points), 1 tile from red line
+MAKE  |B          |RIGHT-FRONT|22         |1          |EXT-INT    |2          |2          |           |
+MAKE  |C          |LEFT-BACK  |22         |1          |EXT-INT    |2          |2          |           |
+MAKE  |D          |BACK-LEFT  |22         |1          |EXT-INT    |2          |2          |           |
+MAKE  |E          |FRONT-LEFT |19         |1          |INT-EXT    |2          |2          |           |from middle sides sx and dx to up and down vertex (20 drop points), 1 tile from red line
+MAKE  |F          |RIGHT-BACK |19         |1          |INT-EXT    |2          |2          |           |
+MAKE  |G          |LEFT-FRONT |19         |1          |INT-EXT    |2          |2          |           |
+MAKE  |H          |BACK-RIGHT |19         |1          |INT-EXT    |2          |2          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|DROP BARBARIANS 
+DROP  |A-B-C-D    |16-22      |6-7        |barb       |40-65      |50-70      |0          |           |launch barbarians using all 4 vectors concurrently...
+DROP  |E-F-G-H    |2-8        |6-7        |barb       |40-65      |50-70      |200-250    |           |launch barbarians using all 4 vectors concurrently...
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE ARCHERS VECTORS
+MAKE  |A          |FRONT-RIGHT|22         |2          |EXT-INT    |3          |3          |           |from vertex sx and dx to middle sides (20 drop points)
+MAKE  |B          |RIGHT-FRONT|22         |2          |EXT-INT    |3          |3          |           |
+MAKE  |C          |LEFT-BACK  |22         |2          |EXT-INT    |3          |3          |           |
+MAKE  |D          |BACK-LEFT  |22         |2          |EXT-INT    |3          |3          |           |
+MAKE  |E          |FRONT-LEFT |19         |2          |INT-EXT    |3          |3          |           |from middle sides sx and dx to up and down vertex (20 drop points)
+MAKE  |F          |RIGHT-BACK |19         |2          |INT-EXT    |3          |3          |           |
+MAKE  |G          |LEFT-FRONT |19         |2          |INT-EXT    |3          |3          |           |
+MAKE  |H          |BACK-RIGHT |19         |2          |INT-EXT    |3          |3          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|DROP ARCHERS
+DROP  |A-B-C-D    |16-22      |6-7        |arch       |40-65      |50-70      |0          |           |launch archers using all 4 vectors concurrently...
+DROP  |E-F-G-H    |2-8        |6-7        |arch       |40-65      |50-70      |100-150    |           |launch archers using all 4 vectors concurrently...
+
+RECALC|           |           |           |           |           |           |           |           |
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE GIANT VECTORS
+MAKE  |E          |FRONT-LEFT |20         |1          |INT-EXT    |2          |2          |           |from middle sides sx and dx to up and down vertex (20 drop points)
+MAKE  |F          |RIGHT-BACK |20         |1          |INT-EXT    |2          |2          |           |
+MAKE  |G          |LEFT-FRONT |20         |1          |INT-EXT    |2          |2          |           |
+MAKE  |H          |BACK-RIGHT |20         |1          |INT-EXT    |2          |2          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|DROP GIANTS
+DROP  |E-F-G-H    |1-4        |4          |giant      |35-60      |45-65      |400-650    |           |launch giants using all 4 vectors concurrently...
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE WALLB VECTORS
+MAKE  |E          |FRONT-LEFT |20         |2          |INT-EXT    |2          |2          |           |from middle sides sx and dx to up and down vertex (20 drop points)
+MAKE  |F          |RIGHT-BACK |20         |2          |INT-EXT    |2          |2          |           |
+MAKE  |G          |LEFT-FRONT |20         |2          |INT-EXT    |2          |2          |           |
+MAKE  |H          |BACK-RIGHT |20         |2          |INT-EXT    |2          |2          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|DROP WALLB
+DROP  |E-F-G-H    |1          |2          |wall       |35-60      |45-65      |450-700    |           |launch wallbs using all 4 vectors concurrently...
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|DROP REMAINING BARBS IF TROOP COMPOSITION ARENT BALANCED
+MAKE  |E          |FRONT-LEFT |20         |1          |INT-EXT    |2          |2          |           |from middle sides sx and dx to up and down vertex (20 drop points), 1 tile from red line
+MAKE  |F          |RIGHT-BACK |20         |1          |INT-EXT    |2          |2          |           |
+MAKE  |G          |LEFT-FRONT |20         |1          |INT-EXT    |2          |2          |           |
+MAKE  |H          |BACK-RIGHT |20         |1          |INT-EXT    |2          |2          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |E-F-G-H    |1-7        |4-7        |barb       |40-65      |50-70      |200-250    |           |launch remaining barbarians if any
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|DROP REMAINING ARCHS IF TROOP COMPOSITION ARENT BALANCED
+MAKE  |E          |FRONT-LEFT |20         |2          |INT-EXT    |3          |3          |           |from middle sides sx and dx to up and down vertex (20 drop points)
+MAKE  |F          |RIGHT-BACK |20         |2          |INT-EXT    |3          |3          |           |
+MAKE  |G          |LEFT-FRONT |20         |2          |INT-EXT    |3          |3          |           |
+MAKE  |H          |BACK-RIGHT |20         |2          |INT-EXT    |3          |3          |           |
+
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|
+DROP  |E-F-G-H    |1-7        |4-7        |arch       |40-65      |50-70      |100-150    |           |launch remaining archers if any
+
+WAIT  |100-200    |           |           |           |           |           |           |           |Add a wait time; during wait time also CHECK exit values (exit if no resource left, exit if one or two starts reach)
+
+      |VECTOR_____|SIDE_______|DROP_POINTS|ADDTILES___|VERSUS_____|RANDOMX_PX_|RANDOMY_PX_|___________|MAKE VECTORS TO DROP KINK, QUEEN and CASTLE
+MAKE  |R          |RANDOM     |70         |1          |INT-EXT    |2          |2          |           |random side to drop queen and castle, at 3 tiles from redarea
+MAKE  |Q          |RANDOM     |70         |1          |INT-EXT    |2          |2          |           |random side to drop king, at 1 tile from redarea
+      |VECTOR_____|INDEX______|QTY_X_VECT_|TROOPNAME__|DELAY_DROP_|DELAYCHANGE|SLEEPAFTER_|___________|DROP BARBARIANS 
+DROP  |R          |8          |15         |castle     |0          |0          |100-500    |           |launch Castle                                                     castle
+DROP  |Q          |3          |10         |king       |0          |0          |100-500    |           |launch King                                                       king
+DROP  |R          |3          |2          |queen      |0          |0          |100-500    |           |launch Queen                                                      queen
+DROP  |R          |3          |2          |Warden     |0          |0          |0          |           |launch Grand Warden                                               queen
+
+      |                                                                                               |
+      |------------------------------------- four fingers barch end-----------------------------------|
+
+
