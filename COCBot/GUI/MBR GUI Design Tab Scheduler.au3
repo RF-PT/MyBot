@@ -562,7 +562,7 @@ Local $x = 265, $y = 150
 
 	$y += 30
 	$chkRequestCCWeekDays = GUICtrlCreateCheckbox(GetTranslated(26,36, "Request only in this day of the week"), $x-10, $y)
-	GUICtrlSetOnEvent(-1, "chkREquestWeekDays")
+	GUICtrlSetOnEvent(-1, "chkRequestWeekDays")
 	$y += 19
 	$lbRequestCCWeekdays1 = GUICtrlCreateLabel(" S", $x + 30, $y)
 	GUICtrlSetTip(-1, GetTranslated(26,29, "Sunday"))

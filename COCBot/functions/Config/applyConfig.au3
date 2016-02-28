@@ -1739,6 +1739,7 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	; Reenabling window redraw
 	If $bRedrawAtExit Then SetRedrawBotWindow(True)
 
+
 	;Mod AttackHour
 	If $iPlannedAttackHoursEnable = 1 Then
 		GUICtrlSetState($chkAttackHours, $GUI_CHECKED)
@@ -1761,5 +1762,36 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 		EndIf
 	Next
 	;--> Mod AttackHour
+
+	; Days of The week for Scheduler
+	If $iPlannedWeekdaysEnable = 1 Then
+		GUICtrlSetState($chkDonateWeekdays, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkDonateWeekdays, $GUI_UNCHECKED)
+	EndIf
+	chkDonateWeekDays()
+	For $i = 0 To 6
+		If $iPlannedDonateWeekdays[$i] = 1 Then
+			GUICtrlSetState(Eval("chkDonateWeekdays" & $i), $GUI_CHECKED)
+		Else
+			GUICtrlSetState(Eval("chkDonateWeekdays" & $i), $GUI_UNCHECKED)
+		EndIf
+	Next
+
+	If $iPlannedRequestCCWeekDaysEnable = 1 Then
+		GUICtrlSetState($chkRequestCCWeekDays, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkRequestCCWeekDays, $GUI_UNCHECKED)
+	EndIf
+	chkRequestWeekDays()
+	For $i = 0 To 6
+		If $iPlannedRequestCCWeekDays[$i] = 1 Then
+			GUICtrlSetState(Eval("chkRequestCCWeekdays" & $i), $GUI_CHECKED)
+		Else
+			GUICtrlSetState(Eval("chkRequestCCWeekdays" & $i), $GUI_UNCHECKED)
+		EndIf
+	Next
+
+
 
 EndFunc   ;==>applyConfig

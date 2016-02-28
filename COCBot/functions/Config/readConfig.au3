@@ -672,10 +672,15 @@ Func readConfig() ;Reads config and sets it to the variables
 ;~ 		$MilkFarmSnipeEvenIfNoExtractorsFound = IniRead($config,"MilkingAttack","TownHallHitAnyway","1")
 
 		;Mod AttackHour
-		$iPlannedAttackHoursEnable 		= IniRead($config, "Boju", "AttackHoursEnable", "0")
-		$iPlannedAttackHours 			= StringSplit(IniRead($config, "Boju", "AttackHours", "1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
+		$iPlannedAttackHoursEnable 		= IniRead($config, "planned", "AttackHoursEnable", "0")
+		$iPlannedAttackHours 			= StringSplit(IniRead($config, "donate", "AttackHours", "1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
 		;--> Mod AttackHour
 
+		; Days of The week for Scheduler
+		$iPlannedWeekdaysEnable = IniRead($config, "planned", "WeekdaysEnable", "0")
+		$iPlannedDonateWeekdays = StringSplit(IniRead($config, "planned", "DonateWeekdays", "1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
+		$iPlannedRequestCCWeekDaysEnable = IniRead($config, "planned", "RequestCCWeekDaysEnable", "0")
+		$iPlannedRequestCCWeekDays = StringSplit(IniRead($config, "planned", "RequestCCWeekDays", "1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
 
 	Else
 		Return False

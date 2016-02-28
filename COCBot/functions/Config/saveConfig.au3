@@ -1628,14 +1628,49 @@ Func saveConfig() ;Saves the controls settings to the config
 			$string &= "0|"
 		EndIf
 	Next
-	IniWrite($config, "Boju", "AttackHours", $string)
+	IniWrite($config, "planned", "AttackHours", $string)
 
 	If GUICtrlRead($chkAttackHours) = $GUI_CHECKED Then
-		IniWrite($config, "Boju", "AttackHoursEnable", 1)
+		IniWrite($config, "planned", "AttackHoursEnable", 1)
 	Else
-		IniWrite($config, "Boju", "AttackHoursEnable", 0)
+		IniWrite($config, "planned", "AttackHoursEnable", 0)
 	EndIf
 	;--> Mod AttackHour
+
+	; Days of The week for Scheduler
+	If GUICtrlRead($chkDonateWeekdays) = $GUI_CHECKED Then
+		IniWrite($config, "planned", "WeekdaysEnable", 1)
+	Else
+		IniWrite($config, "planned", "WeekdaysEnable", 0)
+	EndIf
+	Local $string = ""
+	For $i = 0 To 6
+		If GUICtrlRead(Eval("chkDonateWeekdays" & $i)) = $GUI_CHECKED Then
+			$string &= "1|"
+		Else
+			$string &= "0|"
+		EndIf
+	Next
+	IniWrite($config, "planned", "DonateWeekdays", $string)
+
+	If GUICtrlRead($chkRequestCCWeekDays) = $GUI_CHECKED Then
+		IniWrite($config, "planned", "RequestCCWeekDaysEnable", 1)
+	Else
+		IniWrite($config, "planned", "RequestCCWeekDaysEnable", 0)
+	EndIf
+	Local $string = ""
+	For $i = 0 To 6
+		If GUICtrlRead(Eval("chkRequestCCWeekdays" & $i)) = $GUI_CHECKED Then
+			$string &= "1|"
+		Else
+			$string &= "0|"
+		EndIf
+	Next
+	IniWrite($config, "planned", "RequestCCWeekDays", $string)
+
+
+
+
 
 	If $hFile <> -1 Then FileClose($hFile)
 

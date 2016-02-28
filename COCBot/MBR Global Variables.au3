@@ -1146,3 +1146,9 @@ Global $TroopDropNumber = 0
 Global $remainingTroops[12][2]
 Global $iRadClickSpeedFast, $radClickSpeedFast, $radClickSpeedNormal
 Global $hDll
+
+; Days of The week for Scheduler
+Global $iPlannedWeekdaysEnable = 0 ; 0 = $GUI_UNCHECKED , 1 = $GUI_CHECKED
+Global $iPlannedDonateWeekdays[7] ; 0= Sunday , 1= Monday , 2= Tuesday, 3= Wednesday, 4= Thursday, 5= Friday, 6= Saturday
+Global $iPlannedRequestCCWeekDaysEnable = 0 ; 0 = $GUI_UNCHECKED , 1 = $GUI_CHECKED
+Global $iPlannedRequestCCWeekDays[7] ; 0= Sunday , 1= Monday , 2= Tuesday, 3= Wednesday, 4= Thursday, 5= Friday, 6= Saturday

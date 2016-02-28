@@ -41,12 +41,17 @@ Func DonateCC($Check = False)
 
 	If $bDonate = False Or $bDonationEnabled = False Then Return ; exit func if no donate checkmarks
 
-	If $iPlannedDonateHoursEnable = 1 Then
-		Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
-		If $iPlannedDonateHours[$hour[0]] = 0 Then
-			SetLog("Donate Clan Castle troops not planned, Skipped..", $COLOR_ORANGE)
-			Return ; exit func if no planned donate checkmarks
+	If $iPlannedWeekdaysEnable = 1 and $iPlannedDonateWeekdays[@WDAY - 1] = 1 Then
+		If $iPlannedDonateHoursEnable = 1 Then
+			Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
+			If $iPlannedDonateHours[$hour[0]] = 0 Then
+				SetLog("Donate Clan Castle troops not planned, Skipped..", $COLOR_ORANGE)
+				Return ; exit func if no planned donate checkmarks
+			EndIf
 		EndIf
+	Else
+		SetLog("Donate Clan Castle troops not planned for:" & _DateDayOfWeek(@WDAY), $COLOR_ORANGE)
+		Return ; exit func if no planned donate checkmarks
 	EndIf
 
 	Local $y = 119
@@ -79,7 +84,7 @@ Func DonateCC($Check = False)
 			;reset every run
 			$bDonate = False
 			$bSkipDonTroops = False
-			If $iTownHallLevel < 8 or $numFactoryDarkSpellAvaiables = 0 Then ; if you are a < TH8 you don't have a Dark Spells Factory OR Dark Spells Factory is Upgrading
+			If $iTownHallLevel < 8 Or $numFactoryDarkSpellAvaiables = 0 Then ; if you are a < TH8 you don't have a Dark Spells Factory OR Dark Spells Factory is Upgrading
 				$bSkipDonSpells = True
 			Else
 				$bSkipDonSpells = False
@@ -554,7 +559,7 @@ Func DonateWindow($Open = True)
 	EndIf
 
 	; Click on Donate Button and wait for the window
-	If _ColorCheck(_GetPixelColor($DonatePixel[0] - 44 , $DonatePixel[1] + 14 , True), Hex(0xFFFFFF, 6), 5) Then
+	If _ColorCheck(_GetPixelColor($DonatePixel[0] - 44, $DonatePixel[1] + 14, True), Hex(0xFFFFFF, 6), 5) Then
 		Click($DonatePixel[0] - 40, $DonatePixel[1] + 10, 1, 0, "#0174")
 	Else
 		If $debugSetlog = 1 Then SetLog("Could not find the Donate Button!", $COLOR_PURPLE)

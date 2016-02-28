@@ -243,7 +243,7 @@ Func chkDonateWeekDays()
 	chkDonateHours()
 EndFunc
 
-Func chkREquestWeekDays()
+Func chkRequestWeekDays()
 
 	If GUICtrlRead($chkRequestCCWeekDays) = $GUI_CHECKED Then
 		GUICtrlSetState($chkRequestCCHours, $GUI_ENABLE)
