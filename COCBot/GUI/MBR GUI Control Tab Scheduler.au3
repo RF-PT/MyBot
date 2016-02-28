@@ -19,6 +19,7 @@ Func chkDonateHours()
 			GUICtrlSetState($i, $GUI_ENABLE)
 		Next
 	Else
+		GUICtrlSetState($chkDonateWeekdays, $GUI_UNCHECKED)
 		For $i = $lbDonateHours1 To $lbDonateHoursPM
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
@@ -115,6 +116,7 @@ Func chkRequestCCHours()
 			GUICtrlSetState($i, $GUI_ENABLE)
 		Next
 	Else
+		GUICtrlSetState($chkRequestCCWeekDays, $GUI_UNCHECKED)
 		For $i = $lbRequestCCHours1 To $lbRequestCCHoursPM
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
@@ -127,6 +129,7 @@ Func chkDropCCHours()
 			GUICtrlSetState($i, $GUI_ENABLE)
 		Next
 	Else
+		GUICtrlSetState($chkUSeCCWeekDays, $GUI_UNCHECKED)
 		For $i = $lbDropCCHours1 To $lbDropCCHoursPM
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
@@ -139,6 +142,7 @@ Func chkBoostBarracksHours()
 			GUICtrlSetState($i, $GUI_ENABLE)
 		Next
 	Else
+		GUICtrlSetState($chkBoostWeekDays, $GUI_UNCHECKED)
 		For $i = $lbBoostBarracksHours1 To $lbBoostBarracksHoursPM
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
@@ -180,6 +184,7 @@ Func chkAttackHours()
 			GUICtrlSetState($i, $GUI_ENABLE)
 		Next
 	Else
+		GUICtrlSetState($chkAttackWeekDays, $GUI_UNCHECKED)
 		For $i = $lbAttackHours1 To $lbAttackHoursPM
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
@@ -268,4 +273,88 @@ Func chkRequestWeekDays()
 		Next
 	EndIf
 	chkRequestCCHours()
+EndFunc
+
+Func chkUseCCWeekDays()
+
+	If GUICtrlRead($chkUSeCCWeekDays) = $GUI_CHECKED Then
+		GUICtrlSetState($chkDropCCHours, $GUI_ENABLE)
+		GUICtrlSetState($chkDropCCHours, $GUI_CHECKED)
+		For $i = $lbUseCCWeekdays1 To $lbUseCCWeekdays7
+			GUICtrlSetState($i, $GUI_ENABLE)
+		Next
+	Else
+		GUICtrlSetState($chkDropCCHours, $GUI_UNCHECKED)
+		GUICtrlSetState($chkDropCCHours, $GUI_DISABLE)
+		For $i = $lbUseCCWeekdays1 To $lbUseCCWeekdays7
+			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+	EndIf
+	If GUICtrlRead($chkUSeCCWeekDays) = $GUI_CHECKED Then
+		For $i = $chkUSeCCWeekDays0 To $chkUSeCCWeekDays6
+			GUICtrlSetState($i, $GUI_ENABLE)
+		Next
+	Else
+		For $i = $chkUSeCCWeekDays0 To $chkUSeCCWeekDays6
+			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+	EndIf
+	chkDropCCHours()
+
+EndFunc
+
+Func chkBoostWeekDays()
+
+	If GUICtrlRead($chkBoostWeekDays) = $GUI_CHECKED Then
+		GUICtrlSetState($chkBoostBarracksHours, $GUI_ENABLE)
+		GUICtrlSetState($chkBoostBarracksHours, $GUI_CHECKED)
+		For $i = $lbBoostWeekdays1 To $lbBoostWeekdays7
+			GUICtrlSetState($i, $GUI_ENABLE)
+		Next
+	Else
+		GUICtrlSetState($chkBoostBarracksHours, $GUI_UNCHECKED)
+		GUICtrlSetState($chkBoostBarracksHours, $GUI_DISABLE)
+		For $i = $lbBoostWeekdays1 To $lbBoostWeekdays7
+			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+	EndIf
+	If GUICtrlRead($chkBoostWeekDays) = $GUI_CHECKED Then
+		For $i = $chkBoostWeekDays0 To $chkBoostWeekDays6
+			GUICtrlSetState($i, $GUI_ENABLE)
+		Next
+	Else
+		For $i = $chkBoostWeekDays0 To $chkBoostWeekDays6
+			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+	EndIf
+	chkBoostBarracksHours()
+
+EndFunc
+
+Func chkAttackWeekDays()
+
+	If GUICtrlRead($chkAttackWeekDays) = $GUI_CHECKED Then
+		GUICtrlSetState($chkAttackHours, $GUI_ENABLE)
+		GUICtrlSetState($chkAttackHours, $GUI_CHECKED)
+		For $i = $lbAttackWeekdays1 To $lbAttackWeekdays7
+			GUICtrlSetState($i, $GUI_ENABLE)
+		Next
+	Else
+		GUICtrlSetState($chkAttackHours, $GUI_UNCHECKED)
+		GUICtrlSetState($chkAttackHours, $GUI_DISABLE)
+		For $i = $lbAttackWeekdays1 To $lbAttackWeekdays7
+			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+	EndIf
+	If GUICtrlRead($chkAttackWeekDays) = $GUI_CHECKED Then
+		For $i = $chkAttackWeekDays0 To $chkAttackWeekDays6
+			GUICtrlSetState($i, $GUI_ENABLE)
+		Next
+	Else
+		For $i = $chkAttackWeekDays0 To $chkAttackWeekDays6
+			GUICtrlSetState($i, $GUI_DISABLE)
+		Next
+	EndIf
+	chkAttackHours()
+
 EndFunc

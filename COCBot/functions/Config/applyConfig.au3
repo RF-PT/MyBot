@@ -1793,5 +1793,47 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	Next
 
 
+	If $iPlannedUseCCWeekDaysEnable = 1 Then
+		GUICtrlSetState($chkUseCCWeekDays, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkUseCCWeekDays, $GUI_UNCHECKED)
+	EndIf
+	chkUseCCWeekDays()
+	For $i = 0 To 6
+		If $iPlannedUseCCWeekDays[$i] = 1 Then
+			GUICtrlSetState(Eval("chkUseCCWeekdays" & $i), $GUI_CHECKED)
+		Else
+			GUICtrlSetState(Eval("chkUseCCWeekdays" & $i), $GUI_UNCHECKED)
+		EndIf
+	Next
+
+	If $iPlannedBoostWeekDaysEnable = 1 Then
+		GUICtrlSetState($chkBoostWeekDays, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkBoostWeekDays, $GUI_UNCHECKED)
+	EndIf
+	chkBoostWeekDays()
+	For $i = 0 To 6
+		If $iPlannedBoostWeekDays[$i] = 1 Then
+			GUICtrlSetState(Eval("chkBoostWeekdays" & $i), $GUI_CHECKED)
+		Else
+			GUICtrlSetState(Eval("chkBoostWeekdays" & $i), $GUI_UNCHECKED)
+		EndIf
+	Next
+
+	If $iPlannedAttackWeekDaysEnable = 1 Then
+		GUICtrlSetState($chkAttackWeekDays, $GUI_CHECKED)
+	Else
+		GUICtrlSetState($chkAttackWeekDays, $GUI_UNCHECKED)
+	EndIf
+	chkAttackWeekDays()
+	For $i = 0 To 6
+		If $iPlannedAttackWeekDays[$i] = 1 Then
+			GUICtrlSetState(Eval("chkAttackWeekdays" & $i), $GUI_CHECKED)
+		Else
+			GUICtrlSetState(Eval("chkAttackWeekdays" & $i), $GUI_UNCHECKED)
+		EndIf
+	Next
+	; ---> Days of The week for Scheduler
 
 EndFunc   ;==>applyConfig

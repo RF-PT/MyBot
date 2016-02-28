@@ -35,13 +35,23 @@ Func BoostBarracks()
 	;	Verifying existent Variables to run this routine
 	If $bTrainEnabled = False Then Return
 	If $icmbQuantBoostBarracks = 0 Or $icmbBoostBarracks = 0 Then Return
-	If $iPlannedBoostBarracksEnable = 1 Then
-		Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
-		If $iPlannedBoostBarracksHours[$hour[0]] = 0 Then
-			SetLog("Boost Barracks are not Planned, Skipped..", $COLOR_GREEN)
-			Return ; exit func if no planned Boost Barracks checkmarks
+
+	If $iPlannedBoostWeekDaysEnable = 1 Then
+		If $iPlannedBoostWeekDays[@WDAY - 1] = 1 Then
+			If $iPlannedBoostBarracksEnable = 1 Then
+				Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
+				If $iPlannedBoostBarracksHours[$hour[0]] = 0 Then
+					SetLog("Boost Barracks are not Planned, Skipped..", $COLOR_GREEN)
+					Return ; exit func if no planned Boost Barracks checkmarks
+				EndIf
+			EndIf
+		Else
+			SetLog("Boost Barracks are not planned to: " & _DateDayOfWeek(@WDAY), $COLOR_ORANGE)
+			Return ; exit func if no planned donate checkmarks
 		EndIf
 	EndIf
+
+
 	If $icmbQuantBoostBarracks > $numBarracksAvaiables Then
 		SetLog(" Hey Chief! I can not Boost more than: " & $numBarracksAvaiables & " Barracks .... ")
 		Return
@@ -119,7 +129,7 @@ Func BoostBarracks()
 			SaveConfig()
 			If _Sleep($iDelayBoostBarracks2) Then Return
 		EndIf
-		If $DebugSetlog = 1 Then  SetLog("Boosting Barracks individually", $COLOR_BLUE)
+		If $DebugSetlog = 1 Then SetLog("Boosting Barracks individually", $COLOR_BLUE)
 		Local $BoostedBarrack = 0
 		For $i = 0 To ($numBarracks - 1)
 			SetLog("Boosting Barracks nº: " & $i + 1, $COLOR_BLUE)
@@ -136,7 +146,7 @@ Func BoostBarracks()
 						If $DebugSetlog = 1 Then SetLog("DLL Call succeeded " & $res[0], $COLOR_RED)
 						If $res[0] = "0" Then
 							ClickP($aAway, 1, 0, "#0161")
-							If $t = 1 then SetLog("Barrack nº: " & $i + 1 & " Boost Button not found.", $COLOR_RED)
+							If $t = 1 Then SetLog("Barrack nº: " & $i + 1 & " Boost Button not found.", $COLOR_RED)
 						ElseIf $res[0] = "-1" Then
 							SetLog("DLL Error", $COLOR_RED)
 						ElseIf $res[0] = "-2" Then
@@ -157,18 +167,18 @@ Func BoostBarracks()
 									If _ColorCheck(_GetPixelColor(586, 267 + $midOffsetY, True), Hex(0xd80405, 6), 20) Then ;Not enough Gem
 										_GUICtrlComboBox_SetCurSel($cmbBoostBarracks, 0)
 										SetLog("Not enough gems", $COLOR_RED)
-										ExitLoop(2)
+										ExitLoop (2)
 									EndIf
 									If Not $BoostedBarrack = ($icmbQuantBoostBarracks - 1) Then
 										$BoostedBarrack += 1
 										SetLog("Boost " & $BoostedBarrack & " Barrack(s) completed. Remaining :" & ($icmbQuantBoostBarracks - $BoostedBarrack) & " Barracks to Boost.", $COLOR_GREEN)
-										If $BoostedBarrack >= $icmbQuantBoostBarracks Then ExitLoop(2)
+										If $BoostedBarrack >= $icmbQuantBoostBarracks Then ExitLoop (2)
 									Else
 										_GUICtrlComboBox_SetCurSel($cmbBoostBarracks, ($icmbBoostBarracks - 1))
 										$BoostedBarrack += 1
 										SetLog("Boost " & $BoostedBarrack & " Barrack(s) completed. Remaining :" & ($icmbQuantBoostBarracks - $BoostedBarrack) & " Barracks to Boost.", $COLOR_GREEN)
 										SetLog("Remaining :" & $icmbBoostBarracks - 1 & " times ", $COLOR_GREEN)
-										If $BoostedBarrack >= $icmbQuantBoostBarracks Then ExitLoop(2)
+										If $BoostedBarrack >= $icmbQuantBoostBarracks Then ExitLoop (2)
 									EndIf
 								Else
 									SetLog("Barrack nº: " & $i + 1 & " the Confirm Message not open!", $COLOR_RED)
@@ -180,7 +190,7 @@ Func BoostBarracks()
 								SetLog("Barrack nº: " & $i + 1 & " is already Boosted.", $COLOR_RED)
 								$BoostedBarrack += 1
 								ClickP($aAway, 1, 0, "#0161")
-								If $BoostedBarrack = $icmbQuantBoostBarracks Then ExitLoop(2)
+								If $BoostedBarrack = $icmbQuantBoostBarracks Then ExitLoop (2)
 							EndIf
 						EndIf
 					Else

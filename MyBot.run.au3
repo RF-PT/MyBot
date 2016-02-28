@@ -44,7 +44,7 @@ readThemeConfig()
 
 $ModVersion = "V2.5"
 $sBotVersion = "v5.2.1" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
-$sBotTitle = "My Bot " & $sBotVersion & "& Mod S&E" & $ModVersion ;~ Don't use any non file name supported characters like \ / : * ? " < > |
+$sBotTitle = "My Bot " & $sBotVersion & " & Mod S&E " & $ModVersion & " " ;~ Don't use any non file name supported characters like \ / : * ? " < > |
 
 Opt("WinTitleMatchMode", 3) ; Window Title exact match mode
 #include "COCBot\functions\Main Screen\Android.au3"
@@ -217,7 +217,7 @@ Func runBot() ;Bot that runs everything in order
 			ReArm()
 			If _Sleep($iDelayRunBot3) Then Return
 			If $Restart = True Then ContinueLoop
-			If ($iPlannedAttackHours[$hourAttack] <> 0 And $iPlannedAttackHoursEnable = 1) Or $iPlannedAttackHoursEnable = 0 Or $fullArmy1 = False Then ;ModBoju
+			If IsToAttack() Or $fullArmy1 = False Then ;ModBoju
 				ReplayShare($iShareAttackNow)
 				If _Sleep($iDelayRunBot3) Then Return
 				If $Restart = True Then ContinueLoop
@@ -283,8 +283,7 @@ Func runBot() ;Bot that runs everything in order
 					If $Restart = True Then ContinueLoop
 				EndIf
 			Else;ModBoju
-				SetLog("The attack is planned in the schedule, So Waiting", $COLOR_RED);ModBoju
-				If _SleepStatus($iDelayWaitAttack) Then Return False ;ModBoju
+				IsNotToAttack()
 			EndIf;ModBoju
 
 		Else ;When error occours directly goes to attack
@@ -392,7 +391,7 @@ EndFunc   ;==>Idle
 
 Func AttackMain() ;Main control for attack functions
 
-	If ($iPlannedAttackHours[$hourAttack] <> 0 And $iPlannedAttackHoursEnable = 1) Or $iPlannedAttackHoursEnable = 0 Then;ModBoju
+	If IsToAttack() Then;ModBoju
 		$fullArmy1 = False;ModBoju
 		If $iChkUseCCBalanced = 1 Or $iChkUseCCBalancedCSV = 1 Then ;launch profilereport() only if option balance D/R it's activated
 			ProfileReport()
@@ -490,4 +489,38 @@ Func Attack() ;Selects which algorithm
 	EndIf
 EndFunc   ;==>Attack
 
+Func IsToAttack()
 
+	If $iPlannedAttackWeekDaysEnable = 1 Then
+		If $iPlannedAttackWeekDays[@WDAY - 1] = 1 Then
+			If $iPlannedAttackHoursEnable = 1 Then
+				Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
+				If $iPlannedAttackHours[$hour[0]] = 0 Then
+					SetLog("Attack not Planned, Skipped..", $COLOR_ORANGE)
+					Return False
+				Else
+					Return True
+				EndIf
+			Else
+				SetLog("Attack not Planned, Skipped..", $COLOR_ORANGE)
+				Return False
+			EndIf
+		Else
+			SetLog("Attack not Planned to: "  & _DateDayOfWeek(@WDAY), $COLOR_ORANGE)
+			Return False
+		EndIf
+	Else
+		Return True
+	EndIf
+
+EndFunc   ;==>IsToAttack
+
+Func IsNotToAttack()
+
+	For $i = 0 to 20
+		If _SleepStatus($iDelayWaitAttack) Then Return False
+		ClickP($aAway, 1, 0, "#0112")
+		If IsToAttack() then return
+	Next
+
+EndFunc

@@ -1150,5 +1150,16 @@ Global $hDll
 ; Days of The week for Scheduler
 Global $iPlannedWeekdaysEnable = 0 ; 0 = $GUI_UNCHECKED , 1 = $GUI_CHECKED
 Global $iPlannedDonateWeekdays[7] ; 0= Sunday , 1= Monday , 2= Tuesday, 3= Wednesday, 4= Thursday, 5= Friday, 6= Saturday
+
 Global $iPlannedRequestCCWeekDaysEnable = 0 ; 0 = $GUI_UNCHECKED , 1 = $GUI_CHECKED
 Global $iPlannedRequestCCWeekDays[7] ; 0= Sunday , 1= Monday , 2= Tuesday, 3= Wednesday, 4= Thursday, 5= Friday, 6= Saturday
+
+Global $iPlannedUseCCWeekDaysEnable = 0 ; 0 = $GUI_UNCHECKED , 1 = $GUI_CHECKED
+Global $iPlannedUseCCWeekDays[7] ; 0= Sunday , 1= Monday , 2= Tuesday, 3= Wednesday, 4= Thursday, 5= Friday, 6= Saturday
+
+Global $iPlannedBoostWeekDaysEnable = 0 ; 0 = $GUI_UNCHECKED , 1 = $GUI_CHECKED
+Global $iPlannedBoostWeekDays[7] ; 0= Sunday , 1= Monday , 2= Tuesday, 3= Wednesday, 4= Thursday, 5= Friday, 6= Saturday
+
+Global $iPlannedAttackWeekDaysEnable = 0 ; 0 = $GUI_UNCHECKED , 1 = $GUI_CHECKED
+Global $iPlannedAttackWeekDays[7] ; 0= Sunday , 1= Monday , 2= Tuesday, 3= Wednesday, 4= Thursday, 5= Friday, 6= Saturday
+

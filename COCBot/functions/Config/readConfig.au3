@@ -681,6 +681,12 @@ Func readConfig() ;Reads config and sets it to the variables
 		$iPlannedDonateWeekdays = StringSplit(IniRead($config, "planned", "DonateWeekdays", "1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
 		$iPlannedRequestCCWeekDaysEnable = IniRead($config, "planned", "RequestCCWeekDaysEnable", "0")
 		$iPlannedRequestCCWeekDays = StringSplit(IniRead($config, "planned", "RequestCCWeekDays", "1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
+		$iPlannedUseCCWeekDaysEnable = IniRead($config, "planned", "UseCCWeekDaysEnable", "0")
+		$iPlannedUseCCWeekDays = StringSplit(IniRead($config, "planned", "UseCCWeekDays", "1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
+		$iPlannedBoostWeekDaysEnable = IniRead($config, "planned", "BoostWeekDaysEnable", "0")
+		$iPlannedBoostWeekDays = StringSplit(IniRead($config, "planned", "BoostWeekDays", "1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
+		$iPlannedAttackWeekDaysEnable = IniRead($config, "planned", "AttackWeekDaysEnable", "0")
+		$iPlannedAttackWeekDays = StringSplit(IniRead($config, "planned", "AttackWeekDays", "1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
 
 	Else
 		Return False

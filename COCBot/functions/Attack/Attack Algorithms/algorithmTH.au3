@@ -55,7 +55,7 @@ Func AttackTHGrid($troopKind, $iNbOfSpots = 1, $iAtEachSpot = 1, $Sleep = Random
 			If $ichkUseKingTH = 0 Then Return
 			$checkKPower = True
 			SetLog("Dropping King", $COLOR_GREEN)
-			$THusedKing=1
+			$THusedKing = 1
 		EndIf
 
 		;Queen
@@ -63,7 +63,7 @@ Func AttackTHGrid($troopKind, $iNbOfSpots = 1, $iAtEachSpot = 1, $Sleep = Random
 			If $ichkUseQueenTH = 0 Then Return
 			$checkQPower = True
 			SetLog("Dropping Queen", $COLOR_GREEN)
-			$THusedQueen=1
+			$THusedQueen = 1
 		EndIf
 
 		;Warden
@@ -71,17 +71,24 @@ Func AttackTHGrid($troopKind, $iNbOfSpots = 1, $iAtEachSpot = 1, $Sleep = Random
 			If $ichkUseWardenTH = 0 Then Return
 			$checkWPower = True
 			SetLog("Dropping Grand Warden", $COLOR_GREEN)
-			$THusedWarden=1
+			$THusedWarden = 1
 		EndIf
 
 		;CC
 		If $troopKind = $eCastle Then
 			If $ichkUseClastleTH = 0 Then Return
 
-			If $iPlannedDropCCHoursEnable = 1 Then
-				Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
-				If $iPlannedDropCCHours[$hour[0]] = 0 Then
-					SetLog("Drop Clan Castle not Planned, Skipped..", $COLOR_GREEN)
+			If $iPlannedUseCCWeekDaysEnable = 1 Then
+				If $iPlannedUseCCWeekDays[@WDAY - 1] = 1 Then
+					If $iPlannedDropCCHoursEnable = 1 Then
+						Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
+						If $iPlannedDropCCHours[$hour[0]] = 0 Then
+							SetLog("Drop CC not Planned, Skipped..", $COLOR_GREEN)
+							Return ; exit func if no planned donate checkmarks
+						EndIf
+					EndIf
+				Else
+					SetLog("Drop CC not planned to: " & _DateDayOfWeek(@WDAY), $COLOR_ORANGE)
 					Return ; exit func if no planned donate checkmarks
 				EndIf
 			EndIf
@@ -171,7 +178,7 @@ Func DeployTHNormal($iAtEachSpot, $iNbOfSpots)
 					$aThy = 314 - $ii * 14
 					If CheckOneStar(0, False, False) Then Return
 					If IsAttackPage() Then Click(Random($aThx - 5, $aThx + 5, 1), Random($aThy - 5, $aThy + 5, 1), 1, 0, "#0019")
-					If _Sleep(Random(20, 40,1)) Then Return
+					If _Sleep(Random(20, 40, 1)) Then Return
 				Next
 			Next
 		Case 1 ;LL
@@ -186,7 +193,7 @@ Func DeployTHNormal($iAtEachSpot, $iNbOfSpots)
 					$aThy = 314 + $ii * 14
 					If CheckOneStar(0, False, False) Then Return
 					If IsAttackPage() Then Click(Random($aThx - 5, $aThx + 5, 1), Random($aThy - 5, $aThy + 5, 1), 1, 0, "#0020")
-					If _Sleep(Random(20, 40,1)) Then Return
+					If _Sleep(Random(20, 40, 1)) Then Return
 				Next
 			Next
 		Case 2 ;UR
@@ -201,7 +208,7 @@ Func DeployTHNormal($iAtEachSpot, $iNbOfSpots)
 					$aThy = 314 - $ii * 14
 					If CheckOneStar(0, False, False) Then Return
 					If IsAttackPage() Then Click(Random($aThx - 5, $aThx + 5, 1), Random($aThy - 5, $aThy + 5, 1), 1, 0, "#0021")
-					If _Sleep(Random(20, 40,1)) Then Return
+					If _Sleep(Random(20, 40, 1)) Then Return
 				Next
 			Next
 		Case 3 ;LR
@@ -216,7 +223,7 @@ Func DeployTHNormal($iAtEachSpot, $iNbOfSpots)
 					$aThy = 314 + $ii * 14
 					If CheckOneStar(0, False, False) Then Return
 					If IsAttackPage() Then Click(Random($aThx - 5, $aThx + 5, 1), Random($aThy - 5, $aThy + 5, 1), 1, 0, "#0022")
-					If _Sleep(Random(20, 40,1)) Then Return
+					If _Sleep(Random(20, 40, 1)) Then Return
 				Next
 			Next
 	EndSwitch
