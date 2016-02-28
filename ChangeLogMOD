@@ -1,3 +1,13 @@
+**v2.5 (February 28)**
+*Updated Portuguse/Italian/Russian Language
+*Updated the AwesomeGamer CSV DropTroop and Parse files
+*Rearrange the WeakBase, Now is working
+*Add more CSV strategies 
+*ProMac's fixes Castle balance and the Digit OCR to gold
+*Fix the Problem with MatchMode styles (DB and LB)
+*Add the Boju´s Scheduler to attack
+*Add the Week days to the schedulers
+
 **v2.4 (February 23)**
 *Merge the Official version 5.2.1
 *Add a new image for trunks
