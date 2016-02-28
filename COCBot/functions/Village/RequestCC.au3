@@ -18,17 +18,19 @@ Func RequestCC()
 	If $ichkRequest <> 1 Or $canRequestCC = False Or $bDonationEnabled = False Then
 		Return
 	EndIf
-	If $iPlannedRequestCCWeekDaysEnable = 1 and $iPlannedRequestCCWeekDays[@WDAY - 1] = 1 Then
-		If $iPlannedRequestCCHoursEnable = 1 Then
-			Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
-			If $iPlannedRequestCCHours[$hour[0]] = 0 Then
-				SetLog("Request Clan Castle troops not planned for this hour, Skipped..", $COLOR_ORANGE)
-				Return ; exit func if no planned donate checkmarks
+	If $iPlannedRequestCCWeekDaysEnable = 1 Then
+		If $iPlannedRequestCCWeekDays[@WDAY - 1] = 1 Then
+			If $iPlannedRequestCCHoursEnable = 1 Then
+				Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
+				If $iPlannedRequestCCHours[$hour[0]] = 0 Then
+					SetLog("Request Clan Castle troops not planned for this hour, Skipped..", $COLOR_ORANGE)
+					Return ; exit func if no planned donate checkmarks
+				EndIf
 			EndIf
+		Else
+			SetLog("Request Clan Castle troops not planned to: " & _DateDayOfWeek(@WDAY), $COLOR_ORANGE)
+			Return ; exit func if no planned donate checkmarks
 		EndIf
-	Else
-		SetLog("Request Clan Castle troops not planned to: " & _DateDayOfWeek(@WDAY), $COLOR_ORANGE)
-		Return ; exit func if no planned donate checkmarks
 	EndIf
 
 	SetLog("Requesting Clan Castle Troops", $COLOR_BLUE)
