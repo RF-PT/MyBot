@@ -522,6 +522,7 @@ Func IsNotToAttack()
 		If _SleepStatus($iDelayWaitAttack) Then Return False
 		ClickP($aAway, 1, 0, "#0112")
 		checkMainScreen()
+		Idle()
 		If IsToAttack() then return
 	Next
 
