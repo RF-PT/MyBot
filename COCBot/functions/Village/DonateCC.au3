@@ -45,12 +45,12 @@ Func DonateCC($Check = False)
 		If $iPlannedDonateHoursEnable = 1 Then
 			Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
 			If $iPlannedDonateHours[$hour[0]] = 0 Then
-				SetLog("Donate Clan Castle troops not planned, Skipped..", $COLOR_ORANGE)
+				SetLog("Donate Clan Castle troops not planned for this hour, Skipped..", $COLOR_ORANGE)
 				Return ; exit func if no planned donate checkmarks
 			EndIf
 		EndIf
 	Else
-		SetLog("Donate Clan Castle troops not planned for:" & _DateDayOfWeek(@WDAY), $COLOR_ORANGE)
+		SetLog("Donate Clan Castle troops not planned to: " & _DateDayOfWeek(@WDAY), $COLOR_ORANGE)
 		Return ; exit func if no planned donate checkmarks
 	EndIf
 
