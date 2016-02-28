@@ -672,8 +672,8 @@ Func readConfig() ;Reads config and sets it to the variables
 ;~ 		$MilkFarmSnipeEvenIfNoExtractorsFound = IniRead($config,"MilkingAttack","TownHallHitAnyway","1")
 
 		;Mod AttackHour
-		$iPlannedAttackHoursEnable 		= IniRead($config, "planned", "AttackHoursEnable", "0")
-		$iPlannedAttackHours 			= StringSplit(IniRead($config, "donate", "AttackHours", "1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
+		$iPlannedAttackHoursEnable = IniRead($config, "planned", "AttackHoursEnable", "0")
+		$iPlannedAttackHours = StringSplit(IniRead($config, "planned", "AttackHours", "1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1|1"),"|", $STR_NOCOUNT)
 		;--> Mod AttackHour
 
 		; Days of The week for Scheduler

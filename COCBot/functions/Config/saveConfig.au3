@@ -1620,6 +1620,13 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWrite($config, "SmartZap", "txtTHpercentCollectors", GUICtrlRead($txtTHpercentCollectors))
 
 	;Mod AttackHour
+
+	If GUICtrlRead($chkAttackHours) = $GUI_CHECKED Then
+		IniWrite($config, "planned", "AttackHoursEnable", 1)
+	Else
+		IniWrite($config, "planned", "AttackHoursEnable", 0)
+	EndIf
+
 	Local $string = ""
 	For $i = 0 To 23
 		If GUICtrlRead(Eval("chkAttackHours" & $i)) = $GUI_CHECKED Then
@@ -1629,12 +1636,6 @@ Func saveConfig() ;Saves the controls settings to the config
 		EndIf
 	Next
 	IniWrite($config, "planned", "AttackHours", $string)
-
-	If GUICtrlRead($chkAttackHours) = $GUI_CHECKED Then
-		IniWrite($config, "planned", "AttackHoursEnable", 1)
-	Else
-		IniWrite($config, "planned", "AttackHoursEnable", 0)
-	EndIf
 	;--> Mod AttackHour
 
 	; Days of The week for Scheduler

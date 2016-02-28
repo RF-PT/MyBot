@@ -518,8 +518,10 @@ EndFunc   ;==>IsToAttack
 Func IsNotToAttack()
 
 	For $i = 0 to 20
+		checkAttackDisable($iTaBChkAttack, $Result)
 		If _SleepStatus($iDelayWaitAttack) Then Return False
 		ClickP($aAway, 1, 0, "#0112")
+		checkMainScreen()
 		If IsToAttack() then return
 	Next
 

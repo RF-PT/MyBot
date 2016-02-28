@@ -1748,14 +1748,7 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	EndIf
 	chkAttackHours()
 	For $i = 0 To 23
-		If $iPlannedDonateHours[$i] = 1 Then
-			GUICtrlSetState(Eval("chkDonateHours" & $i), $GUI_CHECKED)
-		Else
-			GUICtrlSetState(Eval("chkDonateHours" & $i), $GUI_UNCHECKED)
-		EndIf
-	Next
-	For $i = 0 To 23
-		If $iPlannedAttackHours[$i] = '1' Then
+		If $iPlannedAttackHours[$i] = 1 Then
 			GUICtrlSetState(Eval("chkAttackHours" & $i), $GUI_CHECKED)
 		Else
 			GUICtrlSetState(Eval("chkAttackHours" & $i), $GUI_UNCHECKED)
