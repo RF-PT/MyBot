@@ -930,7 +930,7 @@ Global $aShieldStatus = ["","",""] ; string shield type, string shield time, str
 ;Building Side (DES/TH) Switch and DESide End Early
 Global Enum $eSideBuildingDES, $eSideBuildingTH
 Global $BuildingLoc, $BuildingLocX = 0, $BuildingLocY = 0
-Global $dropQueen, $dropKing
+Global $dropQueen, $dropKing , $dropWarden
 Global $BuildingEdge, $BuildingToLoc = ""
 Global $saveiChkTimeStopAtk, $saveiChkTimeStopAtk2, $saveichkEndOneStar, $saveichkEndTwoStars
 Global $DarkLow
