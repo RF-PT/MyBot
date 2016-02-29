@@ -1163,3 +1163,5 @@ Global $iPlannedBoostWeekDays[7] ; 0= Sunday , 1= Monday , 2= Tuesday, 3= Wednes
 Global $iPlannedAttackWeekDaysEnable = 0 ; 0 = $GUI_UNCHECKED , 1 = $GUI_CHECKED
 Global $iPlannedAttackWeekDays[7] ; 0= Sunday , 1= Monday , 2= Tuesday, 3= Wednesday, 4= Thursday, 5= Friday, 6= Saturday
 
+Global $FirstStartIsNotAttack
+

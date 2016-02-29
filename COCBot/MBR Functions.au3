@@ -110,6 +110,7 @@
 #include "functions\CreateArmy\Spell.au3"
 #include "functions\CreateArmy\TrainClick.au3"
 #include "functions\CreateArmy\Train.au3"
+#include "functions\CreateArmy\Train2.au3"
 #include "functions\CreateArmy\TrainIt.au3"
 
 #include "functions\Image Search\ImageSearch.au3"

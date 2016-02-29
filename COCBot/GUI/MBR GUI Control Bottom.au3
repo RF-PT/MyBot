@@ -32,6 +32,7 @@ Func Initiate()
 		$AttackNow = False
 		$FirstStart = True
 		$Checkrearm = True
+		$FirstStartIsNotAttack = True
 
 		If $iDeleteAllPushes = 1 Then
 			_DeletePush($PushToken)

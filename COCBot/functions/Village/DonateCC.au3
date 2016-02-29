@@ -501,22 +501,26 @@ Func DonateTroopType($Type, $Quant = 0, $Custom = False, $bDonateAll = False)
 				For $i = 0 To UBound($TroopName) - 1
 					If Eval("e" & $TroopName[$i]) = $Type Then
 						Assign("Don" & $TroopName[$i], Eval("Don" & $TroopName[$i]) + $Quant)
+						$isNormalBuild = True
 					EndIf
 				Next
 				For $i = 0 To UBound($TroopDarkName) - 1
 					If Eval("e" & $TroopDarkName[$i]) = $Type Then
 						Assign("Don" & $TroopDarkName[$i], Eval("Don" & $TroopDarkName[$i]) + $Quant)
+						$isDarkBuild = True
 					EndIf
 				Next
 			Else
 				For $i = 0 To UBound($TroopName) - 1
 					If Eval("e" & $TroopName[$i]) = $Type Then
 						Assign("Don" & $TroopName[$i], Eval("Don" & $TroopName[$i]) + $iDonTroopsQuantity)
+						$isNormalBuild = True
 					EndIf
 				Next
 				For $i = 0 To UBound($TroopDarkName) - 1
 					If Eval("e" & $TroopDarkName[$i]) = $Type Then
 						Assign("Don" & $TroopDarkName[$i], Eval("Don" & $TroopDarkName[$i]) + $iDonTroopsQuantity)
+						$isDarkBuild = True
 					EndIf
 				Next
 			EndIf

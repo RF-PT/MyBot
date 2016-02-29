@@ -70,7 +70,7 @@ EndFunc
 func ShowDarkCustomControls()
 	GUICtrlSetState($grpDarkTroops, $GUI_SHOW)
 	For $i = 0 To UBound($TroopDarkName) - 1
-		GUICtrlSetState(Eval("txtNum" & $TroopDarkName[$i]), $GUI_SHOW)
+		GUICtrlSetState(Eval("txtNum" & $TroopDarkName[$i]), $GUI_SHOW + $GUI_ENABLE)
 	Next
 	GUICtrlSetState($lblMinion, $GUI_SHOW)
 	GUICtrlSetState($lblHogRiders, $GUI_SHOW)
@@ -388,8 +388,17 @@ Func SetComboTroopComp()
 				GUICtrlSetData(Eval("txtNum" & $TroopName[$i]), Eval($TroopName[$i] & "Comp"))
 			Next
 
+			For $i = 0 To UBound($TroopDarkName) - 1
+				_GUICtrlEdit_SetReadOnly(Eval("txtNum" & $TroopDarkName[$i]), False)
+			Next
+
+			For $i = 0 To UBound($TroopDarkName) - 1
+				GUICtrlSetData(Eval("txtNum" & $TroopDarkName[$i]), Eval($TroopDarkName[$i] & "Comp"))
+			Next
+
 			HideBarrackControls()
 			ShowCustomControls()
+			ShowDarkCustomControls()
 
 	EndSwitch
 	lblTotalCount()

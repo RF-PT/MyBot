@@ -506,7 +506,7 @@ Func IsToAttack()
 				Return False
 			EndIf
 		Else
-			SetLog("Attack not Planned to: "  & _DateDayOfWeek(@WDAY), $COLOR_ORANGE)
+			SetLog("Attack not Planned to: " & _DateDayOfWeek(@WDAY), $COLOR_ORANGE)
 			Return False
 		EndIf
 	Else
@@ -517,13 +517,29 @@ EndFunc   ;==>IsToAttack
 
 Func IsNotToAttack()
 
-	For $i = 0 to 20
+	For $i = 0 To 20
 		checkAttackDisable($iTaBChkIdle)
 		If _SleepStatus($iDelayWaitAttack) Then Return False
 		ClickP($aAway, 1, 0, "#0112")
 		checkMainScreen()
-		Idle()
-		If IsToAttack() then return
+		Local $iReHere = 0
+		While $iReHere < 7
+			$iReHere += 1
+			DonateCC(True)
+			If _Sleep($iDelayIdle2) Then ExitLoop
+			If $Restart = True Then ExitLoop
+		WEnd
+		If _Sleep($iDelayIdle1) Then ExitLoop
+		If $fullArmy Then
+			Train2()
+		Else
+			Train()
+		EndIf
+		If $Restart = True Then ContinueLoop
+		Collect()
+		If _Sleep($iDelayRunBot1) Then Return
+		CleanYard()
+		If IsToAttack() Then Return
 	Next
 
-EndFunc
+EndFunc   ;==>IsNotToAttack
