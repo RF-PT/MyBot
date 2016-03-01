@@ -530,7 +530,7 @@ Func IsNotToAttack()
 			If $Restart = True Then ExitLoop
 		WEnd
 		If _Sleep($iDelayIdle1) Then ExitLoop
-		If $fullArmy Then
+		If $fullArmy = True Then
 			Train2()
 		Else
 			Train()

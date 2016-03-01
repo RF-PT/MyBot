@@ -171,6 +171,7 @@ Func Train2()
 
 		While isBarrack() And $isNormalBuild
 			$brrNum += 1
+			If CheckFullBarrack() then $FirstStartIsNotAttack = True
 			If $FirstStartIsNotAttack = True Then
 				;CLICK REMOVE TROOPS
 				If _Sleep($iDelayTrain2) Then Return
@@ -282,6 +283,7 @@ Func Train2()
 			WEnd
 			While isDarkBarrack()
 				$brrDarkNum += 1
+				If CheckFullBarrack() then $FirstStartIsNotAttack = True
 				If $FirstStartIsNotAttack = True Then
 					If _Sleep($iDelayTrain2) Then Return
 					$icount = 0
