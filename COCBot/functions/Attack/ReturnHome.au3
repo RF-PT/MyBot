@@ -53,7 +53,7 @@ Func ReturnHome($TakeSS = 1, $GoldChangeCheck = True) ;Return main screen
 
 	EndIf
 
-	If $DisableOtherEBO And $iMatchMode = $LB And $iChkDeploySettings[$LB] = 6 And $DESideEB And ($dropQueen Or $dropKing) Then
+	If $DisableOtherEBO And $iMatchMode = $LB And $iChkDeploySettings[$LB] = 4 And $DESideEB And ($dropQueen Or $dropKing) Then
 		RevertEBO()
 	EndIf
 
