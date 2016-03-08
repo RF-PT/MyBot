@@ -49,7 +49,7 @@ Func _GetRedArea()
 	ReDim $PixelRedArea[UBound($PixelTopLeft) + UBound($PixelBottomLeft) + UBound($PixelTopRight) + UBound($PixelBottomRight)]
 	ReDim $PixelRedAreaFurther[UBound($PixelTopLeft) + UBound($PixelBottomLeft) + UBound($PixelTopRight) + UBound($PixelBottomRight)]
 
-	If $iMatchMode[$LB] And $iChkDeploySettings[$LB] = 6 Then
+	If $iMatchMode = $LB And $iChkDeploySettings[$LB] = 6 Then
 		ReDim $PixelTopLeftFurther[UBound($PixelTopLeft)]
 		ReDim $PixelBottomLeftFurther[UBound($PixelBottomLeft)]
 		ReDim $PixelTopRightFurther[UBound($PixelTopRight)]
