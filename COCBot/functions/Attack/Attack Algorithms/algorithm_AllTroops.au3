@@ -77,7 +77,6 @@ Func useTownHallSnipe() ;End battle after a town hall snipe
 		SetLog("King and/or Queen dropped, close attack")
 	EndIf
 
-	CloseBattle()
 EndFunc   ;==>useTownHallSnipe
 
 Func useSmartDeploy() ;Gets infomation about the red area for Smart Deploy
@@ -303,7 +302,12 @@ Func algorithm_AllTroops() ; Attack Algorithm for all existing troops
 
 	If $iMatchMode = $TS Then
 		useTownHallSnipe()
+		CloseBattle()
 		Return
+	EndIf
+
+	If $chkATH = 1 And SearchTownHallLoc() then
+		useTownHallSnipe()
 	EndIf
 
 	Local $nbSides = getNumberOfSides()
